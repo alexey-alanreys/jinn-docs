@@ -1,4 +1,4 @@
-# Jinn
+# Jinn Trading Framework
 
 **Jinn** is a professional algorithmic trading framework for cryptocurrency markets.
 
