@@ -2,7 +2,7 @@
 
 **Jinn** is a professional algorithmic trading framework for cryptocurrency markets.
 
-**Version:** `3.2.2`
+**Version:** `3.2.3`
 
 ---
 
