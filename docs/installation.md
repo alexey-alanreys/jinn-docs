@@ -129,32 +129,93 @@ poetry install --no-root
 poetry env info
 ```
 
+### 4. Test the Installation
+
+Run a test launch to verify that **Jinn** is running correctly:
+
+```bash
+poetry run python run.py
+```
+
+The server should start successfully and display startup messages.  
+Press `Ctrl+C` to stop the server after confirming it runs without errors.
+
 ---
 
 ## <a id="step-4-configuration"></a> ⚙️ Step 4: Configuration
 
 ### Create the Environment File
 
-1. Go to the project root directory.
-2. Locate the file `data/.env.example`.
+1. Navigate to the project root directory.
+2. Locate the file: `.env.example`.
 3. Create a new file named `.env`.
-4. Copy the contents from `.env.example` and provide your credentials:
+4. Copy the contents of `.env.example` into `.env` and adjust the values according to your setup.
+
+### Server Configuration
+
+Choose one of the following deployment setups:
+
+#### Setup 1: Local Development _(Standard for everyday use)_
+
+To run the **Jinn** locally on your machine, use the following server configuration:
 
 ```env
-# Example (replace with actual credentials)
-SERVER_URL=http://127.0.0.1:5000
+# --- SERVER CONFIGURATION ---
+BASE_URL=
+SERVER_PORT=1001
+CORS_ORIGINS=http://localhost:5173
+```
 
+**Configuration Details:**
+
+- **BASE_URL**: Leave empty. The **Jinn** will automatically use `http://127.0.0.1`.
+- **SERVER_PORT**: You can change this port if needed (default: 1001).
+- **CORS_ORIGINS**: Keep as `http://localhost:5173` (used for frontend development).
+
+Access the **Jinn** at: `http://127.0.0.1:1001`.
+
+#### Setup 2: Remote Access _(For automation or monitoring)_
+
+To expose the server publicly via a tunneling service (e.g., ngrok):
+
+1. Install and configure ngrok or a similar tool.
+2. Start ngrok on the same port as the server:
+
+   ```bash
+   ngrok http 1001
+   ```
+
+3. Use the public URL provided by ngrok in your `.env` file:
+
+```env
+# --- Server configuration ---
+BASE_URL=https://your-ngrok-url.ngrok.io
+SERVER_PORT=1001
+CORS_ORIGINS=https://your-ngrok-url.ngrok.io
+```
+
+**Important:** Replace `your-ngrok-url.ngrok.io` with the actual URL provided by your tunneling service.
+
+### API Key Setup Instructions
+
+Add your exchange and notification credentials to the `.env` file:
+
+```env
+# --- Bybit credentials ---
+# Get from: https://www.bybit.com/app/user/api-management
 BYBIT_API_KEY=your-bybit-api-key
 BYBIT_API_SECRET=your-bybit-api-secret
 
+# --- Binance credentials ---
+# Get from: https://www.binance.com/en/my/settings/api-management
 BINANCE_API_KEY=your-binance-api-key
 BINANCE_API_SECRET=your-binance-api-secret
 
+# --- Telegram Integration ---
+# Bot token from @BotFather | Chat ID from @userinfobot
 TELEGRAM_BOT_TOKEN=your-telegram-token
 TELEGRAM_CHAT_ID=your-chat-id
 ```
-
-### API Key Setup Instructions
 
 #### Binance
 
@@ -219,6 +280,12 @@ poetry run python run.py
 - Ensure your keys are enabled for trading access.
 - Confirm IP whitelist settings (if applicable).
 - Check your internet connection and firewall settings.
+
+### Server Access Issues
+
+- Verify the server port is not blocked by firewall.
+- Check that BASE_URL matches your actual access method.
+- For remote access, ensure the tunneling service is running correctly.
 
 ---
 
