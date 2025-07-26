@@ -54,4 +54,7 @@ Contact information is available on the [main GitHub profile](https://github.com
 
 ---
 
+**License:** Proprietary  
+**Author:** [Albert Alanreys](https://github.com/albert-alanreys)
+
 **© 2025 Jinn Trading Framework**
