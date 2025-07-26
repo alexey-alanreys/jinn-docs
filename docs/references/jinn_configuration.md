@@ -1,4 +1,4 @@
-# Configuration Reference
+# Jinn Configuration Reference
 
 This reference provides an overview of all configuration mechanisms used in **Jinn**.
 

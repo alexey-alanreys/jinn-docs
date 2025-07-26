@@ -25,7 +25,7 @@ Before launching **Jinn**, configure `config/settings.py`, which controls the op
 MODE = enums.Mode.OPTIMIZATION
 ```
 
-See [Configuration Reference](configuration.md#enum-reference) for enum definitions.
+See [Configuration Reference](../references/jinn_configuration.md#enum-reference) for enum definitions.
 
 ### Strategic Workflow
 
@@ -63,7 +63,7 @@ OPTIMIZATION_CONFIG = {
 }
 ```
 
-See [Configuration Reference](configuration.md#enum-reference) for enum definitions.
+See [Configuration Reference](../references/jinn_configuration.md#enum-reference) for enum definitions.
 
 #### 2. Run Optimization
 
@@ -113,7 +113,7 @@ Example:
 ]
 ```
 
-See [Configuration Reference](configuration.md#json-enum-reference) for JSON enum definitions.
+See [Configuration Reference](../references/jinn_configuration.md#json-enum-reference) for JSON enum definitions.
 
 #### 3. Run Optimization
 
@@ -149,7 +149,7 @@ BACKTESTING_CONFIG = {
 }
 ```
 
-See [Configuration Reference](configuration.md#enum-reference) for enum definitions.
+See [Configuration Reference](../references/jinn_configuration.md#enum-reference) for enum definitions.
 
 #### 2. Run Backtesting
 
@@ -225,7 +225,7 @@ AUTOMATION_CONFIG = {
 }
 ```
 
-See [Configuration Reference](configuration.md#enum-reference) for enum definitions.
+See [Configuration Reference](../references/jinn_configuration.md#enum-reference) for enum definitions.
 
 #### 2. Run Automation
 
@@ -271,7 +271,7 @@ BYBIT_BTCUSDT_1.json
 
 Copy files from `optimization` to `automation`. The system will select the first available parameter set for execution.
 
-See [Configuration Reference](configuration.md#json-configuration-files) for JSON structure examples.
+See [Configuration Reference](../references/jinn_configuration.md#json-configuration-files) for JSON structure examples.
 
 #### 3. Run Automation
 
@@ -345,7 +345,7 @@ http://127.0.0.1:5000
 
 ### Getting Help
 
-1. Review the [Configuration Reference](configuration.md).
+1. Review the [Configuration Reference](../references/jinn_configuration.md).
 2. Check application logs for errors.
 3. Contact the author for support.
 

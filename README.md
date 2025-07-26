@@ -8,9 +8,9 @@
 
 ## 🚀 Quick Start
 
-- **[Overview](docs/overview.md)** — Introduction to the framework
-- **[Installation Guide](docs/installation.md)** — Complete setup instructions
-- **[Using Built-in Strategies](docs/workflow.md)** — Workflow for built-in strategies
+- **[Overview](docs/index.md)** — Introduction to the framework
+- **[Installation Guide](docs/guides/installation.md)** — Complete setup instructions
+- **[Using Built-in Strategies](docs/guides/workflow.md)** — Workflow for built-in strategies
 
 ---
 
@@ -18,20 +18,26 @@
 
 ### Getting Started
 
-- [Installation Guide](docs/installation.md)
-- [Using Built-in Strategies](docs/workflow.md)
-- [Configuration Reference](docs/configuration.md)
+- [Installation Guide](docs/guides/installation.md)
+- [Using Built-in Strategies](docs/guides/workflow.md)
 
 ### Core Features
 
-- [Optimization](docs/workflow.md#optimization)
-- [Backtesting](docs/workflow.md#backtesting)
-- [Automation](docs/workflow.md#automation)
+- [Optimization](docs/guides/workflow.md#optimization)
+- [Backtesting](docs/guides/workflow.md#backtesting)
+- [Automation](docs/guides/workflow.md#automation)
+
+### Technical References
+
+- [Jinn Configuration](docs/references/jinn_configuration.md)
+- [QuantKlines Library](docs/references/quantklines_lib.md)
+- [Exchange API Clients](docs/references/exchange_clients.md)
+- [Signal & Color Codes](docs/references/constants.md)
 
 ### Interface
 
-- [Web Dashboard](docs/overview.md#web-interface)
-- [Screenshots Gallery](docs/screenshots.md)
+- [Web Dashboard](docs/index.md#web-interface)
+- [Screenshots Gallery](docs/media/screenshots.md)
 
 ---
 

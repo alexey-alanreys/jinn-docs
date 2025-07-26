@@ -127,15 +127,15 @@ Executes validated strategies in real-time using live market data from connected
 
 **Jinn** includes a modern, responsive web interface for real-time monitoring, multi-strategy control, and performance analysis.
 
-See [Screenshots Gallery](screenshots.md) for a full overview.
+See [Screenshots Gallery](media/screenshots.md) for a full overview.
 
 #### Light Theme
 
-![Full Interface - Light Theme](../screenshots/light-theme/01.png)
+![Full Interface - Light Theme](media/light-theme/01.png)
 
 #### Dark Theme
 
-![Full Interface - Dark Theme](../screenshots/dark-theme/01.png)
+![Full Interface - Dark Theme](media/dark-theme/01.png)
 
 ### Dashboard Features
 
@@ -152,8 +152,8 @@ See [Screenshots Gallery](screenshots.md) for a full overview.
 
 Ready to start trading with **Jinn**? Follow these steps:
 
-- **[Installation Guide](installation.md)** — Complete setup instructions
-- **[Using Built-in Strategies](workflow.md)** — Workflow for built-in strategies
+- **[Installation Guide](guides/installation.md)** — Complete setup instructions
+- **[Using Built-in Strategies](guides/workflow.md)** — Workflow for built-in strategies
 
 ---
 
