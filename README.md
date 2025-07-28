@@ -8,18 +8,19 @@
 
 ## 🚀 Quick Start
 
-- **[Overview](docs/index.md)** — Introduction to the framework
-- **[Installation Guide](docs/guides/installation.md)** — Complete setup instructions
-- **[Using Built-in Strategies](docs/guides/workflow.md)** — Workflow for built-in strategies
+- **[Overview](docs/index.md)** — Introduction to the **Jinn**
+- **[Installation](docs/guides/installation.md)** — Complete setup instructions
+- **[Built-in Strategies](docs/guides/workflow.md)** — Guide to using built-in strategies
 
 ---
 
 ## 📖 Documentation
 
-### Getting Started
+### User Guides
 
-- [Installation Guide](docs/guides/installation.md)
-- [Using Built-in Strategies](docs/guides/workflow.md)
+- [Installation](docs/guides/installation.md)
+- [Built-in Strategies](docs/guides/workflow.md)
+- [Strategy Development](docs/guides/development.md)
 
 ### Core Features
 
@@ -32,7 +33,7 @@
 - [Jinn Configuration](docs/references/jinn_configuration.md)
 - [QuantKlines Library](docs/references/quantklines_lib.md)
 - [Exchange API Clients](docs/references/exchange_clients.md)
-- [Signal & Color Codes](docs/references/constants.md)
+- [Constants Reference](docs/references/constants.md)
 
 ### Interface
 
@@ -53,8 +54,5 @@ For access to the private repository, questions, or feature requests, please con
 Contact information is available on the [main GitHub profile](https://github.com/albert-alanreys).
 
 ---
-
-**License:** Proprietary  
-**Author:** [Albert Alanreys](https://github.com/albert-alanreys)
 
 **© 2025 Jinn Trading Framework**

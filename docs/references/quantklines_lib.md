@@ -2,7 +2,7 @@
 
 The **QuantKlines** library provides a comprehensive suite of high-performance technical analysis functions.
 
-> **Note:** All code examples assume `import src.core.quantklines as qk`
+> **Note:** All code examples assume `import src.core.quantklines as qk`.
 
 ## Table of Contents
 

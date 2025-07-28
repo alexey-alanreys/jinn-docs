@@ -181,9 +181,9 @@ To expose the server publicly via a tunneling service (e.g., ngrok):
 1. Install and configure ngrok or a similar tool.
 2. Start ngrok on the same port as the server:
 
-   ```bash
-   ngrok http 1001
-   ```
+```bash
+ngrok http 1001
+```
 
 3. Use the public URL provided by ngrok in your `.env` file:
 

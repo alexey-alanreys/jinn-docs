@@ -1,11 +1,12 @@
 # Constants Reference
 
-This reference provides an overview of fixed values used for signal classification and color definitions.
+This reference defines constants for signal classification and indicator visualization.
 
 ## Table of Contents
 
 - [Signal Codes](#signal-codes)
-- [Color Codes](#color-codes)
+- [Indicator Styles](#indicator-styles)
+- [Indicator Colors](#indicator-colors)
 
 ---
 
@@ -41,9 +42,47 @@ Signal codes are numeric values used to classify trading actions within a strate
 
 ---
 
-## <a id="color-codes"></a> Color Codes
+## <a id="indicator-styles"></a> Indicator Styles
 
-All color constants are defined using the `encode_rgb(R, G, B)` format and return a hexadecimal representation.
+Display settings used in `indicator_options` to control the visual appearance of indicators.
+
+### Chart Types
+
+| Value       | Description     |
+| ----------- | --------------- |
+| `line`      | Line chart      |
+| `histogram` | Histogram chart |
+
+### Line Styles (`lineStyle`)
+
+| Value | Description   |
+| ----- | ------------- |
+| 0     | Solid         |
+| 1     | Dotted        |
+| 2     | Dashed        |
+| 3     | Large Dashed  |
+| 4     | Sparse Dotted |
+
+### Line Types (`lineType`)
+
+| Value | Description |
+| ----- | ----------- |
+| 0     | Simple      |
+| 1     | With Steps  |
+| 2     | Curved      |
+
+### Other Options
+
+- `lineWidth` (int): Optional line thickness (e.g., 1, 2, 3).
+- `color` (str): Encoded color (see [Indicator Colors](#indicator-colors)).
+- `lineVisible` (bool): Whether the line is visible.
+- `pane` (int): Panel number to render the indicator (0 = main, 1+ = subpanels).
+
+---
+
+## <a id="indicator-colors"></a> Indicator Colors
+
+Color constants used in `indicator_options` to control the visual appearance of indicators.
 
 | Name       | RGB            | Hex Code  | Preview                                            |
 | ---------- | -------------- | --------- | -------------------------------------------------- |

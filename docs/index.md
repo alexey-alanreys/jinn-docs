@@ -153,7 +153,7 @@ See [Screenshots Gallery](media/screenshots.md) for a full overview.
 Ready to start trading with **Jinn**? Follow these steps:
 
 - **[Installation Guide](guides/installation.md)** — Complete setup instructions
-- **[Using Built-in Strategies](guides/workflow.md)** — Workflow for built-in strategies
+- **[Built-in Strategies Guide](guides/workflow.md)** — Workflow for built-in strategies
 
 ---
 

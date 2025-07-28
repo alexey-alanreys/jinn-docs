@@ -1,4 +1,4 @@
-# Using Built-in Strategies
+# Built-in Strategies Guide
 
 This guide explains how to use the built-in strategies of **Jinn** across three core phases: optimization, backtesting and automation.
 
@@ -180,8 +180,8 @@ MODE = enums.Mode.BACKTESTING
 Move optimized parameter files:
 
 ```
-From: src/strategies/[strategy]/optimization/
-To:   src/strategies/[strategy]/backtesting/
+From: src/strategies/[strategy_name]/optimization/
+To:   src/strategies/[strategy_name]/backtesting/
 ```
 
 #### 3. Adjust Time Periods (Optional)
@@ -258,7 +258,7 @@ MODE = enums.Mode.AUTOMATION
 Create JSON files in the automation directories:
 
 ```
-src/strategies/[strategy]/automation/[EXCHANGE]_[SYMBOL]_[INTERVAL].json
+src/strategies/[strategy_name]/automation/[EXCHANGE]_[SYMBOL]_[INTERVAL].json
 ```
 
 Example filename:
@@ -291,31 +291,30 @@ http://127.0.0.1:5000
 
 ## <a id="best-practices"></a> 📝 Best Practices
 
-### Strategy Development
+### Using Strategy
 
 1. **Always Optimize First:** Never skip the optimization phase.
-2. **Use Out-of-Sample Testing:** Test on unseen historical data.
-3. **Consider Market Regimes:** Test across various market conditions.
-4. **Monitor Drawdowns:** Set acceptable risk thresholds.
+2. **Use Out-of-Sample Testing:** Validate performance on unseen historical data.
+3. **Consider Market Regimes:** Ensure the strategy works across different market conditions.
 
 ### Risk Management
 
 1. **Start Small:** Use minimal capital for new strategies.
-2. **Diversify:** Avoid relying on a single strategy or symbol.
-3. **Set Stop Losses:** Define maximum acceptable losses.
+2. **Monitor Drawdowns:** Set acceptable risk thresholds.
+3. **Diversify:** Avoid relying on a single strategy or symbol.
 4. **Regular Monitoring:** Check performance at least once per day.
 
 ### System Maintenance
 
 1. **Keep APIs Updated:** Regularly verify exchange connectivity.
-2. **Monitor Resources:** Ensure sufficient CPU and memory.
+2. **Update Dependencies:** Keep all Python packages current.
 3. **Backup Configurations:** Save successful parameter sets.
-4. **Update Dependencies:** Keep all Python packages current.
+4. **Monitor Resources:** Ensure sufficient CPU and memory.
 
 ### Performance Optimization
 
-1. **Use Appropriate Intervals:** High-frequency strategies require more resources.
-2. **Limit Concurrent Strategies:** Avoid overloading the system.
+1. **Use Appropriate Intervals:** Higher frequency means higher resource usage.
+2. **Limit Concurrent Strategies:** Avoid overloading with too many.
 3. **Optimize Network:** Ensure low-latency, stable internet.
 
 ---

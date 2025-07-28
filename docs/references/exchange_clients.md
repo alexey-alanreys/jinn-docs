@@ -3,7 +3,7 @@
 The **Exchange Clients** provide a unified interface for executing futures trades on **Binance** and **Bybit** exchanges.  
 Both clients implement identical methods, ensuring consistent behavior across different exchange platforms.
 
-> **Note:** All code examples assume the client is accessed via `self.client`
+> **Note:** All code examples assume the client is accessed via `self.client`.
 
 ## Table of Contents
 
