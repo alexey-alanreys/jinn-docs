@@ -2,7 +2,7 @@
 
 **Jinn** is a professional algorithmic trading framework for cryptocurrency markets.
 
-**Version:** `3.2.3`
+**Version:** `4.0.0`
 
 ---
 
@@ -26,14 +26,13 @@
 
 - [Optimization](docs/guides/workflow.md#optimization)
 - [Backtesting](docs/guides/workflow.md#backtesting)
-- [Automation](docs/guides/workflow.md#automation)
+- [Live Trading](docs/guides/workflow.md#live-trading)
 
 ### Technical References
 
-- [Jinn Configuration](docs/references/jinn_configuration.md)
 - [QuantKlines Library](docs/references/quantklines_lib.md)
-- [Exchange API Clients](docs/references/exchange_clients.md)
 - [Constants Reference](docs/references/constants.md)
+- [Exchange API Clients](docs/references/exchange_clients.md)
 
 ### Interface
 

@@ -2,14 +2,13 @@
 
 The **QuantKlines** library provides a comprehensive suite of high-performance technical analysis functions.
 
-> **Note:** All code examples assume `import src.core.quantklines as qk`.
+> **Note:** All code examples assume the library is imported as `quantklines`.
 
 ## Table of Contents
 
 - [Filters](#filters)
 - [Math Operations](#math-operations)
 - [Momentum Indicators](#momentum-indicators)
-- [Timeframe Utilities](#timeframe-utilities)
 - [Trend Indicators](#trend-indicators)
 - [Utility Functions](#utility-functions)
 - [Volatility Indicators](#volatility-indicators)
@@ -41,8 +40,8 @@ Detects crossover points between two data series (both above and below crossings
 
 ```python
 # Detect when price crosses moving average (both directions)
-ma20 = qk.sma(close, 20)
-crosses = qk.cross(close, ma20)
+ma20 = quantklines.sma(close, 20)
+crosses = quantklines.cross(close, ma20)
 ```
 
 ### crossover()
@@ -66,8 +65,8 @@ Detects upward crossover points where `source1` crosses above `source2`.
 
 ```python
 # Detect when RSI crosses above 30 (oversold exit)
-rsi_values = qk.rsi(close, 14)
-oversold_exit = qk.crossover(rsi_values, np.full(len(rsi_values), 30))
+rsi_values = quantklines.rsi(close, 14)
+oversold_exit = quantklines.crossover(rsi_values, np.full(len(rsi_values), 30))
 ```
 
 ### crossunder()
@@ -91,8 +90,8 @@ Detects downward crossover points where `source1` crosses below `source2`.
 
 ```python
 # Detect when RSI crosses below 70 (overbought exit)
-rsi_values = qk.rsi(close, 14)
-overbought_exit = qk.crossunder(rsi_values, np.full(len(rsi_values), 70))
+rsi_values = quantklines.rsi(close, 14)
+overbought_exit = quantklines.crossunder(rsi_values, np.full(len(rsi_values), 70))
 ```
 
 ---
@@ -122,7 +121,7 @@ Calculate the difference between current values and past values in a data series
 
 ```python
 # Calculate 5-period price change
-price_change = qk.change(close, 5)
+price_change = quantklines.change(close, 5)
 ```
 
 ### cum()
@@ -145,7 +144,7 @@ Calculate the cumulative sum of elements in the input array.
 
 ```python
 # Calculate cumulative volume
-cumulative_volume = qk.cum(volume)
+cumulative_volume = quantklines.cum(volume)
 ```
 
 ### ema()
@@ -169,7 +168,7 @@ Calculate the Exponential Moving Average (EMA) of a data series.
 
 ```python
 # Calculate 21-period EMA
-ema21 = qk.ema(close, 21)
+ema21 = quantklines.ema(close, 21)
 ```
 
 ### hma()
@@ -193,7 +192,7 @@ Calculate HMA (Hull Moving Average) for reduced lag and improved smoothing.
 
 ```python
 # Calculate 14-period Hull Moving Average
-hma14 = qk.hma(close, 14)
+hma14 = quantklines.hma(close, 14)
 ```
 
 ### rma()
@@ -219,7 +218,7 @@ Calculate Wilder's RMA (Rolling Moving Average) used in RSI calculations.
 
 ```python
 # Calculate 14-period RMA (used internally in RSI)
-rma14 = qk.rma(close, 14)
+rma14 = quantklines.rma(close, 14)
 ```
 
 ### sma()
@@ -243,7 +242,7 @@ Calculate SMA (Simple Moving Average) of a data series.
 
 ```python
 # Calculate 50-period simple moving average
-sma50 = qk.sma(close, 50)
+sma50 = quantklines.sma(close, 50)
 ```
 
 ### stdev()
@@ -267,7 +266,7 @@ Calculate rolling standard deviation over a specified window length.
 
 ```python
 # Calculate 20-period standard deviation
-price_volatility = qk.stdev(close, 20)
+price_volatility = quantklines.stdev(close, 20)
 ```
 
 ### vwap()
@@ -297,7 +296,7 @@ Calculate VWAP (Volume-Weighted Average Price) on a daily basis.
 
 ```python
 # Calculate daily VWAP
-daily_vwap = qk.vwap(timestamps, high, low, close, volume)
+daily_vwap = quantklines.vwap(timestamps, high, low, close, volume)
 ```
 
 ### wma()
@@ -321,7 +320,7 @@ Calculate WMA (Weighted Moving Average) with linear weights.
 
 ```python
 # Calculate 10-period weighted moving average
-wma10 = qk.wma(close, 10)
+wma10 = quantklines.wma(close, 10)
 ```
 
 ---
@@ -351,7 +350,7 @@ Calculate RSI (Relative Strength Index) momentum oscillator.
 
 ```python
 # Calculate 14-period RSI
-rsi14 = qk.rsi(close, 14)
+rsi14 = quantklines.rsi(close, 14)
 
 # Identify overbought/oversold conditions
 overbought = rsi14 > 70
@@ -382,7 +381,7 @@ Calculate stochastic oscillator values.
 
 ```python
 # Calculate 14-period stochastic oscillator
-stoch14 = qk.stoch(close, high, low, 14)
+stoch14 = quantklines.stoch(close, high, low, 14)
 ```
 
 ### wpr()
@@ -409,74 +408,10 @@ Calculate Williams Percent Range (WPR) indicator values.
 
 ```python
 # Calculate 14-period Williams %R
-wpr14 = qk.wpr(close, high, low, 14)
+wpr14 = quantklines.wpr(close, high, low, 14)
 
 # Identify oversold conditions (typically < -80)
 oversold = wpr14 < -80
-```
-
----
-
-## <a id="timeframe-utilities"></a> Timeframe Utilities
-
-Functions for adapting data between different timeframes.
-
-### shrink()
-
-```python
-shrink(lower_tf_source: np.ndarray, lower_tf_time: np.ndarray,
-       target_tf_time: np.ndarray) -> np.ndarray
-```
-
-Adapt lower timeframe data to current timeframe by aligning values.
-
-**Parameters:**
-
-- `lower_tf_source` (np.ndarray): Data values from lower timeframe
-- `lower_tf_time` (np.ndarray): Timestamps of lower (source) timeframe
-- `target_tf_time` (np.ndarray): Timestamps of main (target) timeframe
-
-**Returns:**
-
-- `np.ndarray`: 2D array with lower TF values aligned to main TF
-
-**Use Case:** Map 1-minute data to 5-minute bars for intrabar analysis.
-
-**Example:**
-
-```python
-# Map 1m RSI values to 5m timeframe
-rsi_1m = qk.rsi(close_1m, 14)
-rsi_mapped = qk.shrink(rsi_1m, time_1m, time_5m)
-```
-
-### stretch()
-
-```python
-stretch(higher_tf_source: np.ndarray, higher_tf_time: np.ndarray,
-        target_tf_time: np.ndarray) -> np.ndarray
-```
-
-Adapt higher timeframe data to current timeframe by expanding values.
-
-**Parameters:**
-
-- `higher_tf_source` (np.ndarray): Data values from higher timeframe
-- `higher_tf_time` (np.ndarray): Timestamps of higher (source) timeframe
-- `target_tf_time` (np.ndarray): Timestamps of target (main) timeframe
-
-**Returns:**
-
-- `np.ndarray`: Array with higher TF values expanded to main TF
-
-**Use Case:** Use daily levels on hourly charts.
-
-**Example:**
-
-```python
-# Stretch daily VWAP to hourly timeframe
-daily_vwap = qk.vwap(time_1d, high_1d, low_1d, close_1d, volume_1d)
-hourly_vwap = qk.stretch(daily_vwap, time_1d, time_1h)
 ```
 
 ---
@@ -510,7 +445,7 @@ Calculate Directional Movement Index (DMI) indicators.
 
 ```python
 # Calculate 14-period DMI with 14-period ADX smoothing
-plus_di, minus_di, adx = qk.dmi(high, low, close, 14, 14)
+plus_di, minus_di, adx = quantklines.dmi(high, low, close, 14, 14)
 
 # Identify trend strength
 strong_trend = adx > 25
@@ -540,7 +475,7 @@ Calculate Donchian Channel indicators (upper, lower, middle bands).
 
 ```python
 # Calculate 20-period Donchian Channel
-upper, lower, middle = qk.donchian(high, low, 20)
+upper, lower, middle = quantklines.donchian(high, low, 20)
 
 # Identify breakouts
 breakout_up = close > upper
@@ -574,7 +509,7 @@ Calculate Double SuperTrend (DST) indicator bands.
 
 ```python
 # Calculate DST with 3.0 factor and 10-period ATR
-upper_band, lower_band = qk.dst(high, low, close, 3.0, 10)
+upper_band, lower_band = quantklines.dst(high, low, close, 3.0, 10)
 ```
 
 ### supertrend()
@@ -603,7 +538,7 @@ Calculate SuperTrend indicator values and direction.
 
 ```python
 # Calculate SuperTrend with 3.0 factor and 10-period ATR
-st_values, st_direction = qk.supertrend(high, low, close, 3.0, 10)
+st_values, st_direction = quantklines.supertrend(high, low, close, 3.0, 10)
 
 # Identify trend changes
 trend_up = st_direction == -1
@@ -637,7 +572,7 @@ Calculate the highest value over a sliding window.
 
 ```python
 # Find highest high over last 20 periods
-highest_high = qk.highest(high, 20)
+highest_high = quantklines.highest(high, 20)
 ```
 
 ### lowest()
@@ -661,7 +596,7 @@ Calculate the lowest value over a sliding window.
 
 ```python
 # Find lowest low over last 20 periods
-lowest_low = qk.lowest(low, 20)
+lowest_low = quantklines.lowest(low, 20)
 ```
 
 ### pivothigh()
@@ -687,7 +622,7 @@ Identify pivot highs in a series over specified left and right lookback windows.
 
 ```python
 # Identify pivot highs with 5 bars left and right
-pivot_highs = qk.pivothigh(high, 5, 5)
+pivot_highs = quantklines.pivothigh(high, 5, 5)
 ```
 
 ### pivotlow()
@@ -713,7 +648,7 @@ Identify pivot lows in a series over specified left and right lookback windows.
 
 ```python
 # Identify pivot lows with 3 bars left and 3 bars right
-pivot_lows = qk.pivotlow(low, 3, 3)
+pivot_lows = quantklines.pivotlow(low, 3, 3)
 ```
 
 ---
@@ -748,7 +683,7 @@ Calculate the Average True Range (ATR) indicator.
 
 ```python
 # Calculate 14-period ATR
-atr14 = qk.atr(high, low, close, 14)
+atr14 = quantklines.atr(high, low, close, 14)
 ```
 
 ### bb()
@@ -774,7 +709,7 @@ Calculate Bollinger Bands indicator values.
 
 ```python
 # Calculate 20-period Bollinger Bands with 2.0 standard deviation
-middle, upper, lower = qk.bb(close, 20, 2.0)
+middle, upper, lower = quantklines.bb(close, 20, 2.0)
 
 # Identify squeeze conditions
 bb_squeeze = (upper - lower) / middle < 0.1
@@ -803,7 +738,7 @@ Calculate Bollinger Bands Width (BBW) indicator values.
 
 ```python
 # Calculate Bollinger Bands Width
-bbw_values = qk.bbw(close, 20, 2.0)
+bbw_values = quantklines.bbw(close, 20, 2.0)
 
 # Identify low volatility periods
 low_volatility = bbw_values < np.percentile(bbw_values, 20)
@@ -833,7 +768,7 @@ Calculate True Range (TR) values from price series.
 
 ```python
 # Calculate True Range
-tr_values = qk.tr(high, low, close, True)
+tr_values = quantklines.tr(high, low, close, True)
 
 # Use for volatility analysis
 high_volatility = tr_values > np.percentile(tr_values, 80)

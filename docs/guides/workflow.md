@@ -1,13 +1,13 @@
 # Built-in Strategies Guide
 
-This guide explains how to use the built-in strategies of **Jinn** across three core phases: optimization, backtesting and automation.
+This guide explains how to use the built-in strategies of **Jinn** across three core phases: optimization, backtesting, and live trading.
 
 ## Table of Contents
 
 - [Getting Started](#getting-started)
 - [Optimization](#optimization)
 - [Backtesting](#backtesting)
-- [Automation](#automation)
+- [Live Trading](#live-trading)
 - [Best Practices](#best-practices)
 - [Troubleshooting](#troubleshooting)
 
@@ -15,27 +15,23 @@ This guide explains how to use the built-in strategies of **Jinn** across three 
 
 ## <a id="getting-started"></a> 🚀 Getting Started
 
-### Initial Configuration
+### Launching the Application
 
-Before launching **Jinn**, configure `config/settings.py`, which controls the operation mode and trading parameters.
+To start **Jinn**, navigate to the project directory and execute the following command:
 
-**Jinn** operates in three distinct modes, controlled by the `MODE` variable:
-
-```python
-MODE = enums.Mode.OPTIMIZATION
+```bash
+poetry run python run.py
 ```
 
-See [Configuration Reference](../references/jinn_configuration.md#enum-reference) for enum definitions.
+Once the application starts successfully, open your web browser and navigate to the provided address. By default, this will be `http://127.0.0.1:1001` (unless you've modified the `SERVER_PORT` or `BASE_URL` settings in your `.env` file).
 
 ### Strategic Workflow
 
 **Jinn** follows a systematic three-phase approach:
 
-1. **Optimize** strategies to identify the best parameter combinations.
-2. **Backtest** optimized strategies against historical market data.
-3. **Automate** validated strategies in live trading environments.
-
-Each mode plays a vital role in the strategy development and deployment lifecycle.
+- 📈 **Optimization** — Identify strategy parameters to maximize profitability.
+- 🔍 **Backtesting** — Evaluate strategies on historical data with robust metrics.
+- 🤖 **Live Trading** — Run and manage strategies in real-time market environments.
 
 ---
 
@@ -43,312 +39,209 @@ Each mode plays a vital role in the strategy development and deployment lifecycl
 
 The optimization phase discovers optimal parameter combinations by systematically testing configurations against historical data.
 
-### Single Strategy Optimization
+### 1. Configure Optimization Settings
 
-#### 1. Configure Settings
+Open the _Optimization Settings_ tab in the right panel of the interface. Add a new configuration by clicking the corresponding button at the bottom of the tab. Configure the settings according to your preferences: select a strategy, symbol, timeframe, exchange, as well as start and end dates for the chart data. Create additional configurations as needed.
 
-Edit `settings.py` to specify optimization mode and parameters:
+> **Note:** Configurations can be deleted, imported/exported, and cloned for convenience.
 
-```python
-MODE = enums.Mode.OPTIMIZATION
+<div align="center">
 
-OPTIMIZATION_CONFIG = {
-    'strategy': enums.Strategy.SANDBOX_V1,
-    'exchange': enums.Exchange.BINANCE,
-    'market': enums.Market.SPOT,
-    'symbol': 'BTCUSDT',
-    'interval': '1h',
-    'start': '2019-01-01',
-    'end': '2023-01-01',
-}
-```
+![Optimization Settings](../media/workflow/optimization_settings.png)
 
-See [Configuration Reference](../references/jinn_configuration.md#enum-reference) for enum definitions.
+</div>
 
-#### 2. Run Optimization
+### 2. Run Optimization Process
 
-```bash
-cd path/to/jinn-core
-poetry run python run.py
-```
+After successfully configuring your settings, launch optimization for one configuration (using the button on each configuration) or run all configurations simultaneously (by clicking the corresponding button at the bottom of the tab). The configuration colors will change to yellow, indicating that the application has begun optimizing the strategies. Upon completion, the corresponding configuration will turn green for successful optimization or red if problems occurred (such as incorrectly configured parameters).
 
-### Multiple Strategy Optimization
+<div align="center">
 
-#### 1. Configure Settings
+![Optimization Running](../media/workflow/optimization_running.png)
 
-Edit `settings.py`:
+</div>
 
-```python
-MODE = enums.Mode.OPTIMIZATION
-```
+### 3. Access Optimization Results
 
-#### 2. Create JSON Configuration Files
-
-Generate `optimization.json` files within each strategy directory:
-
-```
-src/strategies/[strategy_name]/optimization/optimization.json
-```
-
-Example:
-
-```json
-[
-  {
-    "exchange": "BINANCE",
-    "market": "SPOT",
-    "symbol": "BTCUSDT",
-    "interval": "1h",
-    "start": "2020-01-01",
-    "end": "2025-01-01"
-  },
-  {
-    "exchange": "BINANCE",
-    "market": "SPOT",
-    "symbol": "ETHUSDT",
-    "interval": "1h",
-    "start": "2020-01-01",
-    "end": "2025-01-01"
-  }
-]
-```
-
-See [Configuration Reference](../references/jinn_configuration.md#json-enum-reference) for JSON enum definitions.
-
-#### 3. Run Optimization
-
-```bash
-poetry run python run.py
-```
-
-The system will process all configured strategies in parallel.
+Optimization results become immediately available in the _Backtesting Settings_ and _Live Trading Settings_ tabs.
 
 ---
 
 ## <a id="backtesting"></a> 📊 Backtesting
 
-The backtesting phase evaluates optimized strategies using historical data.
+The backtesting phase evaluates optimized strategies using historical data to validate their performance.
 
-### Single Strategy Backtesting
+### 1. Configure Backtesting Settings
 
-#### 1. Configure Settings
+Open the _Backtesting Settings_ tab in the right panel of the interface. Add a configuration by clicking the corresponding button at the bottom of the tab. Configure the settings according to your requirements: select a strategy, symbol, timeframe, exchange, start and end dates for the chart data, and adjust strategy parameters. If the configuration was created through optimization, it's recommended to modify the start and end dates to test the strategy's generalization ability and avoid overfitting. Create additional configurations as needed.
 
-Edit `settings.py` to specify backtesting mode and parameters:
+> **Note:** Configurations can be deleted, imported/exported, and cloned for convenience.
 
-```python
-MODE = enums.Mode.BACKTESTING
+<div align="center">
 
-BACKTESTING_CONFIG = {
-    'strategy': enums.Strategy.SANDBOX_V1,
-    'exchange': enums.Exchange.BINANCE,
-    'market': enums.Market.SPOT,
-    'symbol': 'BTCUSDT',
-    'interval': '1h',
-    'start': '2023-01-01',
-    'end': '2025-01-01',
-}
-```
+![Backtesting Settings](../media/workflow/backtesting_settings.png)
 
-See [Configuration Reference](../references/jinn_configuration.md#enum-reference) for enum definitions.
+</div>
 
-#### 2. Run Backtesting
+### 2. Execute Backtesting
 
-```bash
-poetry run python run.py
-```
+After successfully configuring your settings, launch backtesting for one configuration (using the button on each configuration) or run all configurations simultaneously (by clicking the corresponding button at the bottom of the tab). The configuration colors will change to yellow, indicating that the application has begun preparing data and executing the strategies. Upon completion, the corresponding configuration will turn green for successful execution or red if problems occurred (such as incorrect configuration parameters). To easily match configurations with active strategies, each configuration has a crosshair button. Click this button to open the corresponding strategy on the chart.
 
-#### 3. Analyze Results
+<div align="center">
 
-Open your web browser and navigate to:
+![Backtesting Running](../media/workflow/backtesting_running.png)
 
-```
-http://127.0.0.1:5000
-```
+</div>
 
-### Multiple Strategy Backtesting
+### 3. Analyze Backtesting Results
 
-#### 1. Configure Settings
+Switch to the _Active Strategies_ tab where all prepared strategies will appear. Click on strategy card to open the corresponding strategy in the interface. This allows you to examine the strategy's behavior on the chart and view trading statistics in the bottom panel of the interface.
 
-Edit `settings.py`:
+![Backtesting Strategies](../media/workflow/backtesting_strategies.png)
 
-```python
-MODE = enums.Mode.BACKTESTING
-```
+### 4. Adjust Strategy Parameters
 
-#### 2. Prepare Parameter Files
+The _Strategy Parameters_ tab in the left panel of the interface allows you to modify parameters of the current strategy in real-time.
 
-Move optimized parameter files:
+> **Note:** Changing parameters in the configuration does not affect the parameters of the currently active strategy.
 
-```
-From: src/strategies/[strategy_name]/optimization/
-To:   src/strategies/[strategy_name]/backtesting/
-```
+<div align="center">
 
-#### 3. Adjust Time Periods (Optional)
+![Backtesting Parameters](../media/workflow/backtesting_parameters.png)
 
-Modify date ranges in parameter files if desired.
-
-#### 4. Run Backtesting
-
-```bash
-poetry run python run.py
-```
-
-#### 5. Analyze Results
-
-Open your web browser and navigate to:
-
-```
-http://127.0.0.1:5000
-```
+</div>
 
 ---
 
-## <a id="automation"></a> 🤖 Automation
+## <a id="live-trading"></a> 🤖 Live Trading
 
-Automation mode runs strategies in real-time with live market data.
+Live Trading mode executes strategies in real-time with live market data, sending actual orders to exchanges.
 
-### Single Strategy Automation
+### 1. Configure Live Trading Settings
 
-#### 1. Configure Settings
+Open the _Live Trading Settings_ tab in the right panel of the interface. Add a configuration by clicking the corresponding button at the bottom of the tab. Configure the settings according to your requirements: select a strategy, symbol, timeframe, exchange, and adjust strategy parameters. If the configuration was created through optimization, additional configuration changes are typically not required.
 
-Edit `settings.py` to specify automation mode and parameters:
+> **Note:** Configurations can be deleted, imported/exported, and cloned for convenience.
 
-```python
-MODE = enums.Mode.AUTOMATION
+<div align="center">
 
-AUTOMATION_CONFIG = {
-    'strategy': enums.Strategy.SANDBOX_V1,
-    'exchange': enums.Exchange.BINANCE,
-    'symbol': 'XRPUSDT',
-    'interval': 1
-}
-```
+![Live Trading Settings](../media/workflow/live_trading_settings.png)
 
-See [Configuration Reference](../references/jinn_configuration.md#enum-reference) for enum definitions.
+</div>
 
-#### 2. Run Automation
+### 2. Launch Live Trading
 
-```bash
-poetry run python run.py
-```
+After successfully configuring your settings, launch live trading for one configuration (using the button on each configuration) or run all configurations simultaneously (by clicking the corresponding button at the bottom of the tab). The configuration colors will change to yellow, indicating that the application has begun preparing data and executing the strategies. Upon completion, the corresponding configuration will turn green for successful execution or red if problems occurred (such as incorrect configuration parameters). To easily match configurations with active strategies, each configuration has a crosshair button. Click this button to open the corresponding strategy on the chart.
 
-#### 3. Monitor Performance
+<div align="center">
 
-Open your web browser and navigate to:
+![Live Trading Running](../media/workflow/live_trading_running.png)
 
-```
-http://127.0.0.1:5000
-```
+</div>
 
-### Multiple Strategy Automation
+### 3. Monitor Live Trading Strategies
 
-#### 1. Configure Settings
+Switch to the _Active Strategies_ tab where all prepared strategies will appear. Click on strategy card to open the corresponding strategy in the interface, allowing you to monitor strategies trading in real-time. Trading statistics are also available in the bottom panel of the interface. Additionally, you can modify strategy parameters using the _Strategy Parameters_ tab, changing the strategy's behavior in real-time.
 
-Edit `settings.py`:
+> **Note:** Strategies currently in live trading mode have a green indicator on their cards.
 
-```python
-MODE = enums.Mode.AUTOMATION
-```
+![Live Trading Strategies](../media/workflow/live_trading_strategies.png)
 
-#### 2. Prepare Parameter Files
+### 4. Monitor Trading Alerts
 
-**Option A: Manual Configuration**
+The _Live Trading Alerts_ tab will display notifications from strategies executing real trading operations on exchanges.
 
-Create JSON files in the automation directories:
+<div align="center">
 
-```
-src/strategies/[strategy_name]/automation/[EXCHANGE]_[SYMBOL]_[INTERVAL].json
-```
+![Live Trading Alerts](../media/workflow/live_trading_alerts.png)
 
-Example filename:
-
-```
-BYBIT_BTCUSDT_1.json
-```
-
-**Option B: Reuse Optimized Parameters**
-
-Copy files from `optimization` to `automation`. The system will select the first available parameter set for execution.
-
-See [Configuration Reference](../references/jinn_configuration.md#json-configuration-files) for JSON structure examples.
-
-#### 3. Run Automation
-
-```bash
-poetry run python run.py
-```
-
-#### 4. Monitor Performance
-
-Open your web browser and navigate to:
-
-```
-http://127.0.0.1:5000
-```
+</div>
 
 ---
 
 ## <a id="best-practices"></a> 📝 Best Practices
 
-### Using Strategy
+### Strategy Development Workflow
 
-1. **Always Optimize First:** Never skip the optimization phase.
-2. **Use Out-of-Sample Testing:** Validate performance on unseen historical data.
-3. **Consider Market Regimes:** Ensure the strategy works across different market conditions.
+1. **Always Optimize First:** Never skip the optimization phase to ensure optimal parameter selection.
+2. **Use Out-of-Sample Testing:** Validate performance on unseen historical data to avoid overfitting.
+3. **Consider Market Regimes:** Ensure the strategy works across different market conditions and volatility levels.
+4. **Parameter Sensitivity Analysis:** Test how sensitive your strategy is to small parameter changes.
 
 ### Risk Management
 
-1. **Start Small:** Use minimal capital for new strategies.
-2. **Monitor Drawdowns:** Set acceptable risk thresholds.
-3. **Diversify:** Avoid relying on a single strategy or symbol.
-4. **Regular Monitoring:** Check performance at least once per day.
+1. **Start Small:** Use minimal capital for new strategies until proven successful.
+2. **Monitor Drawdowns:** Set acceptable risk thresholds and stop strategies exceeding limits.
+3. **Diversify:** Avoid relying on a single strategy, symbol, or market condition.
+4. **Regular Monitoring:** Check performance and system health at least once per day.
+5. **Position Sizing:** Implement proper position sizing based on account balance and risk tolerance.
 
 ### System Maintenance
 
-1. **Keep APIs Updated:** Regularly verify exchange connectivity.
-2. **Update Dependencies:** Keep all Python packages current.
-3. **Backup Configurations:** Save successful parameter sets.
-4. **Monitor Resources:** Ensure sufficient CPU and memory.
+1. **Keep APIs Updated:** Regularly verify exchange connectivity and API key validity.
+2. **Update Dependencies:** Keep all Python packages and system components current.
+3. **Backup Configurations:** Save successful parameter sets and configuration files.
+4. **Monitor Resources:** Ensure sufficient CPU, memory, and disk space for operations.
+5. **Log Analysis:** Regularly review application logs for warnings or errors.
 
 ### Performance Optimization
 
-1. **Use Appropriate Intervals:** Higher frequency means higher resource usage.
-2. **Limit Concurrent Strategies:** Avoid overloading with too many.
-3. **Optimize Network:** Ensure low-latency, stable internet.
+1. **Data Quality:** Ensure historical data is complete and accurate before optimization.
+2. **Realistic Assumptions:** Account for slippage, fees, and execution delays in backtesting.
+3. **Walk-Forward Analysis:** Periodically re-optimize strategies on recent data.
+4. **Market Adaptation:** Be prepared to adjust or retire strategies as market conditions change.
 
 ---
 
 ## <a id="troubleshooting"></a> 🛠️ Troubleshooting
 
-### Common Issues
+### Common Configuration Issues
 
-#### Strategy Not Executing
+#### Strategy Not Loading
 
-- Check API credentials and permissions.
-- Verify symbol availability on the exchange.
-- Confirm historical data availability.
-- Ensure sufficient account balance.
+- Verify all fields are filled in the configuration.
+- Check that the selected symbol is available on the chosen exchange.
+- Ensure date ranges are valid and contain sufficient data.
+- Confirm the strategy module is properly installed and accessible.
 
-#### Poor Performance
+### Runtime Issues
 
-- Reassess optimization parameters.
-- Check for overfitting in backtesting.
-- Consider changes in market conditions.
+#### Strategy Not Executing Trades
+
+- Ensure sufficient account balance for the intended position size.
+- Check API credentials have the required trading permissions enabled.
+- Verify the trading symbol is correctly formatted for the exchange.
+- Confirm the strategy logic generates valid trading signals.
+
+#### Poor Performance Results
+
+- Reassess optimization parameters and date ranges.
+- Check for overfitting by testing on different time periods.
+- Consider recent changes in market conditions or volatility.
+- Analyze if the strategy assumptions remain valid.
+
+### Technical Problems
 
 #### Connection Issues
 
-- Test internet connection.
-- Verify exchange API status.
-- Review firewall settings.
+- Test internet connection stability and speed.
+- Verify exchange API status and server availability.
+- Review firewall settings and network restrictions.
+- Check for VPN or proxy interference with API connections.
+
+#### Interface Problems
+
+- Try accessing the interface from a different browser.
+- Ensure JavaScript is enabled in your browser settings.
+- Check for browser console errors and report them.
 
 ### Getting Help
 
-1. Review the [Configuration Reference](../references/jinn_configuration.md).
-2. Check application logs for errors.
-3. Contact the author for support.
+1. **Check Application Logs:** Review log files for detailed error messages and debugging information.
+2. **Verify Configuration:** Double-check all settings against the documentation examples.
+3. **Documentation Review:** Ensure you're following the latest workflow procedures and best practices.
 
 ---
 
 **🎯 Ready to Trade?**  
-Start with paper trading or small position sizes to validate your strategy before scaling up.
+Start with backtesting and small position sizes to validate your strategies before deploying them with real capital.

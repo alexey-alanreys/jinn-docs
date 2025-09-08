@@ -6,6 +6,7 @@ This gallery showcases the **Jinn** interface in both light and dark themes.
 
 - [Light Theme](#light-theme)
 - [Dark Theme](#dark-theme)
+- [Workflow](#workflow)
 
 ---
 
@@ -41,23 +42,11 @@ This gallery showcases the **Jinn** interface in both light and dark themes.
 
 #### Chart with Ruler Tool
 
-![Chart with Ruler Tool - Light Theme](light-theme/chart_ruler.png)
+![Chart with Ruler Tool - Light Theme](light-theme/chart_with_ruler.png)
 
-#### Strategy List Panel
+#### Chart with Trendline
 
-![Strategy List - Light Theme](light-theme/strategy_list.png)
-
-#### Strategy Parameters Panel
-
-![Strategy Parameters - Light Theme](light-theme/strategy_params.png)
-
-#### Alert List Panel
-
-![Alert List - Light Theme](light-theme/alert_list.png)
-
-#### Collapsed Controller Panel
-
-![Collapsed Controller Panel - Light Theme](light-theme/collapsed_panel.png)
+![Chart with Trendline - Light Theme](light-theme/chart_with_trendline.png)
 
 ---
 
@@ -93,20 +82,84 @@ This gallery showcases the **Jinn** interface in both light and dark themes.
 
 #### Chart with Ruler Tool
 
-![Chart with Ruler Tool - Dark Theme](dark-theme/chart_ruler.png)
+![Chart with Ruler Tool - Dark Theme](dark-theme/chart_with_ruler.png)
 
-#### Strategy List Panel
+#### Chart with Trendline
 
-![Strategy List - Dark Theme](dark-theme/strategy_list.png)
+![Chart with Trendline - Dark Theme](dark-theme/chart_with_trendline.png)
 
-#### Strategy Parameters Panel
+---
 
-![Strategy Parameters - Dark Theme](dark-theme/strategy_params.png)
+## <a id="workflow"></a> Workflow
 
-#### Alert List Panel
+#### Optimization Settings Configuration
 
-![Alert List - Dark Theme](dark-theme/alert_list.png)
+<div align="center">
 
-#### Collapsed Controller Panel
+![Optimization Settings](workflow/optimization_settings.png)
 
-![Collapsed Controller Panel - Dark Theme](dark-theme/collapsed_panel.png)
+</div>
+
+#### Optimization Process in Progress
+
+<div align="center">
+
+![Optimization Running](workflow/optimization_running.png)
+
+</div>
+
+#### Backtesting Settings Configuration
+
+<div align="center">
+
+![Backtesting Settings](workflow/backtesting_settings.png)
+
+</div>
+
+#### Backtesting Process in Progress
+
+<div align="center">
+
+![Backtesting Running](workflow/backtesting_running.png)
+
+</div>
+
+#### Active Backtesting Strategies
+
+![Backtesting Strategies](workflow/backtesting_strategies.png)
+
+#### Strategy Parameters Management
+
+<div align="center">
+
+![Backtesting Parameters](workflow/backtesting_parameters.png)
+
+</div>
+
+#### Live Trading Settings Configuration
+
+<div align="center">
+
+![Live Trading Settings](workflow/live_trading_settings.png)
+
+</div>
+
+#### Live Trading Process in Progress
+
+<div align="center">
+
+![Live Trading Running](workflow/live_trading_running.png)
+
+</div>
+
+#### Active Live Trading Strategies
+
+![Live Trading Strategies](workflow/live_trading_strategies.png)
+
+#### Live Trading Alerts
+
+<div align="center">
+
+![Live Trading Alerts](workflow/live_trading_alerts.png)
+
+</div>
