@@ -3,7 +3,7 @@
 The **Exchange Clients** provide a unified interface for executing futures trades on **Binance** and **Bybit** exchanges.  
 Both clients implement identical methods, ensuring consistent behavior across different exchange platforms.
 
-> **Note:** All code examples assume the client is accessed via `client`.
+> **Note:** All code examples assume the client is accessed via `self.client`.
 
 ## Table of Contents
 
@@ -39,7 +39,7 @@ Open long position with market order.
 
 ```python
 # Open long position with 10% of account balance at 10x leverage
-client.market_open_long('BTCUSDT', '10%', 'cross', 10, False)
+self.client.market_open_long('BTCUSDT', '10%', 'cross', 10, False)
 ```
 
 ### market_open_short()
@@ -62,7 +62,7 @@ Open short position with market order.
 
 ```python
 # Open short position with 500 USDT at 5x leverage in isolated margin
-client.market_open_short('ETHUSDT', '500u', 'isolated', 5, True)
+self.client.market_open_short('ETHUSDT', '500u', 'isolated', 5, True)
 ```
 
 ### market_close_long()
@@ -83,10 +83,10 @@ Close long position with market order.
 
 ```python
 # Close 50% of long position
-client.market_close_long('BTCUSDT', '50%', False)
+self.client.market_close_long('BTCUSDT', '50%', False)
 
 # Close entire long position
-client.market_close_long('BTCUSDT', '100%', False)
+self.client.market_close_long('BTCUSDT', '100%', False)
 ```
 
 ### market_close_short()
@@ -107,7 +107,7 @@ Close short position with market order.
 
 ```python
 # Close entire short position
-client.market_close_short('ETHUSDT', '100%', True)
+self.client.market_close_short('ETHUSDT', '100%', True)
 ```
 
 ---
@@ -142,7 +142,7 @@ Open long position with limit order.
 
 ```python
 # Place limit buy order for BTC at 30,000 USDT
-order_id = client.limit_open_long('BTCUSDT', '5%', 'cross', 10, 30000.0, False)
+order_id = self.client.limit_open_long('BTCUSDT', '5%', 'cross', 10, 30000.0, False)
 ```
 
 ### limit_open_short()
@@ -171,7 +171,7 @@ Open short position with limit order.
 
 ```python
 # Place limit sell order for ETH at 2,000 USDT
-order_id = client.limit_open_short('ETHUSDT', '500u', 'isolated', 5, 2000.0, True)
+order_id = self.client.limit_open_short('ETHUSDT', '500u', 'isolated', 5, 2000.0, True)
 ```
 
 ### limit_close_long()
@@ -197,7 +197,7 @@ Close long position with limit order (take-profit).
 
 ```python
 # Set take-profit at 35,000 USDT for BTC long position
-order_id = client.limit_close_long('BTCUSDT', '100%', 35000.0, False)
+order_id = self.client.limit_close_long('BTCUSDT', '100%', 35000.0, False)
 ```
 
 ### limit_close_short()
@@ -223,7 +223,7 @@ Close short position with limit order (take-profit).
 
 ```python
 # Set take-profit at 1,800 USDT for ETH short position
-order_id = client.limit_close_short('ETHUSDT', '100%', 1800.0, True)
+order_id = self.client.limit_close_short('ETHUSDT', '100%', 1800.0, True)
 ```
 
 ---
@@ -255,7 +255,7 @@ Place stop-loss order to close long position.
 
 ```python
 # Set stop loss at 28,000 USDT for BTC long position
-order_id = client.market_stop_close_long('BTCUSDT', '100%', 28000.0, False)
+order_id = self.client.market_stop_close_long('BTCUSDT', '100%', 28000.0, False)
 ```
 
 ### market_stop_close_short()
@@ -281,7 +281,7 @@ Place stop-loss order to close short position.
 
 ```python
 # Set stop loss at 2,100 USDT for ETH short position
-order_id = client.market_stop_close_short('ETHUSDT', '100%', 2100.0, True)
+order_id = self.client.market_stop_close_short('ETHUSDT', '100%', 2100.0, True)
 ```
 
 ---
@@ -306,7 +306,7 @@ Cancel all open orders for specified symbol.
 
 ```python
 # Cancel all orders for BTC
-client.cancel_all_orders('BTCUSDT')
+self.client.cancel_all_orders('BTCUSDT')
 ```
 
 ### cancel_orders()
@@ -326,7 +326,7 @@ Cancel all orders for specified symbol and side.
 
 ```python
 # Cancel all buy orders for ETH
-client.cancel_orders('ETHUSDT', 'buy')
+self.client.cancel_orders('ETHUSDT', 'buy')
 ```
 
 ### cancel_limit_orders()
@@ -346,7 +346,7 @@ Cancel limit orders for specified symbol and side.
 
 ```python
 # Cancel all limit buy orders for BTC
-client.cancel_limit_orders('BTCUSDT', 'buy')
+self.client.cancel_limit_orders('BTCUSDT', 'buy')
 ```
 
 ### cancel_stop_orders()
@@ -366,7 +366,7 @@ Cancel stop orders for specified symbol and side.
 
 ```python
 # Cancel all stop sell orders for ETH
-client.cancel_stop_orders('ETHUSDT', 'sell')
+self.client.cancel_stop_orders('ETHUSDT', 'sell')
 ```
 
 ---
@@ -396,7 +396,7 @@ Check status of limit orders and update alerts.
 
 ```python
 # Check status of limit orders
-active_orders = client.check_limit_orders('BTCUSDT', [12345, 67890])
+active_orders = self.client.check_limit_orders('BTCUSDT', [12345, 67890])
 ```
 
 ### check_stop_orders()
@@ -420,5 +420,5 @@ Check status of stop orders and update alerts.
 
 ```python
 # Check status of stop orders
-active_orders = client.check_stop_orders('ETHUSDT', [54321, 98765])
+active_orders = self.client.check_stop_orders('ETHUSDT', [54321, 98765])
 ```

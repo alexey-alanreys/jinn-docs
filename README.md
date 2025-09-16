@@ -2,7 +2,7 @@
 
 **Jinn** is a professional algorithmic trading framework for cryptocurrency markets.
 
-**Version:** `4.0.0`
+**Version:** `4.1.0`
 
 ---
 
@@ -30,9 +30,10 @@
 
 ### Technical References
 
-- [QuantKlines Library](docs/references/quantklines_lib.md)
-- [Constants Reference](docs/references/constants.md)
-- [Exchange API Clients](docs/references/exchange_clients.md)
+- [Exchange Clients](docs/references/exchange_clients.md)
+- [Quanta Library](docs/references/quanta_lib.md)
+- [Logs Module](docs/references/logs.md)
+- [Constants](docs/references/constants.md)
 
 ### Interface
 

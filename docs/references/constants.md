@@ -46,7 +46,7 @@ Signal codes are numeric values used to classify trading actions within a strate
 
 Display settings used in `indicator_options` to control the visual appearance of indicators.
 
-### Chart Types
+### Chart Types ('type')
 
 | Value       | Description     |
 | ----------- | --------------- |

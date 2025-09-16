@@ -1,6 +1,6 @@
 # Strategy Development Guide
 
-This guide shows how to build custom trading strategies for **Jinn**, using `ExampleV2` as a detailed example. Integrating a strategy into **Jinn** is straightforward: custom strategy modules are simply placed in the `jinn-core/src/core/strategies` folder. In addition to reading this guide, it is strongly recommended to independently study the built-in **Jinn** strategies `ExampleV1` and `ExampleV2`.
+This guide shows how to build custom trading strategies for **Jinn**, using `ExampleV1` as a detailed example. Integrating a strategy into **Jinn** is straightforward: custom strategy modules are simply placed in the `jinn-core/src/core/strategies` folder. In addition to reading this guide, it is strongly recommended to independently study the built-in **Jinn** strategies `ExampleV1` and `ExampleV2`.
 
 ## Table of Contents
 
@@ -42,7 +42,7 @@ Each strategy defines its configuration through two parameter dictionaries:
 Define default parameters for your strategy:
 
 ```python
-class SandboxV1(BaseStrategy):
+class ExampleV1(BaseStrategy):
     params = {
         'order_size': 90.0,
         'min_capital': 100.0,
@@ -109,19 +109,19 @@ from . import (
     Interval,
     adjust,
     colors,
-    quantklines,
-    update_completed_deals_log
+    quanta,
+    logs
 )
 
 
-class ExampleV2(BaseStrategy):
+class ExampleV1(BaseStrategy):
     def __init__(self, params: dict | None = None) -> None:
         super().__init__(params)
 
     def calculate(self) -> None:
         pass
 
-    def trade(self, client: BaseExchangeClient) -> None:
+    def trade(self) -> None:
         pass
 ```
 
@@ -157,22 +157,22 @@ def calculate(self) -> None:
     self.take_quantities = np.full(5, np.nan)
 
     # Technical indicators
-    self.dst = quantklines.dst(
+    self.dst = quanta.dst(
         high=self.high,
         low=self.low,
         close=self.close,
         factor=self.params['st_factor'],
         atr_length=self.params['st_atr_period']
     )
-    self.upper_band_change = quantklines.change(
+    self.upper_band_change = quanta.change(
         source=self.dst[0],
         length=1
     )
-    self.lower_band_change = quantklines.change(
+    self.lower_band_change = quanta.change(
         source=self.dst[1],
         length=1
     )
-    self.rsi = quantklines.rsi(
+    self.rsi = quanta.rsi(
         source=self.close,
         length=self.params['rsi_length']
     )
@@ -202,7 +202,7 @@ def calculate(self) -> None:
     )
 ```
 
-See [QuantKlines Library Reference](../references/quantklines_lib.md) for a detailed overview of the available functions in the **QuantKlines** library.
+See [Quanta Library Reference](../references/quanta_lib.md) for a detailed overview of the available functions in the **Quanta** library.
 
 ### Numba-Optimized Calculation Loop
 
@@ -231,17 +231,48 @@ def _calculate_loop(
         alert_long_new_stop = False
         alert_short_new_stop = False
 
+        # Check for liquidation
+        if (position_type == 0 and low[i] <= liquidation_price):
+            completed_deals_log, pnl = logs.close(
+                completed_deals_log,
+                commission,
+                position_type,
+                order_signal,
+                700,  # Liquidation signal
+                order_date,
+                time[i],
+                order_price,
+                liquidation_price,
+                order_size,
+                initial_capital
+            )
+            equity += pnl
+
+            # Reset variables
+            open_deals_log = logs.clear(open_deals_log)
+            position_type = np.nan
+            order_signal = np.nan
+            order_date = np.nan
+            order_price = np.nan
+            liquidation_price = np.nan
+            take_prices[:, i] = np.nan
+            stop_price[i] = np.nan
+            order_size = np.nan
+            take_quantities[:] = np.nan
+            stop_moved = False
+            alert_cancel = True
+
         # Long position management
         if position_type == 0:
             # Stop loss check
             if low[i] <= stop_price[i]:
                 # Close position and log deal
-                completed_deals_log, pnl = update_completed_deals_log(
+                completed_deals_log, pnl = logs.close(
                     completed_deals_log,
                     commission,
                     position_type,
                     order_signal,
-                    500,
+                    500,  # Stop loss signal
                     order_date,
                     time[i],
                     order_price,
@@ -250,8 +281,11 @@ def _calculate_loop(
                     initial_capital
                 )
                 equity += pnl
-                # Reset position variables
-                # ...
+
+                open_deals_log = logs.clear(open_deals_log)
+                position_type = np.nan
+                # Reset other position variables...
+                alert_cancel = True
 
             # Take profit checks
             if (
@@ -259,7 +293,27 @@ def _calculate_loop(
                 high[i] >= take_prices[0, i]
             ):
                 # Partial close at first TP level
-                # ...
+                completed_deals_log, pnl = logs.close(
+                    completed_deals_log,
+                    commission,
+                    position_type,
+                    order_signal,
+                    301,  # TP1 signal
+                    order_date,
+                    time[i],
+                    order_price,
+                    take_prices[0, i],
+                    take_quantities[0],
+                    initial_capital
+                )
+                equity += pnl
+
+                order_size = round(order_size - take_quantities[0], 8)
+                open_deals_log = logs.resize(
+                    open_deals_log, 0, order_size
+                )
+                take_prices[0, i] = np.nan
+                take_quantities[0] = np.nan
 
         # Entry signal logic
         entry_long = (
@@ -282,50 +336,163 @@ def _calculate_loop(
             position_type = 0
             order_signal = 100
             order_price = close[i]
-            # Calculate position size, stops, targets...
+
+            # Calculate position size
+            if position_size_type == 0:
+                initial_position = (
+                    equity * leverage * (position_size / 100.0)
+                )
+                order_size = (
+                    initial_position * (1 - commission / 100)
+                    / order_price
+                )
+            elif position_size_type == 1:
+                initial_position = (
+                    position_size * leverage
+                )
+                order_size = (
+                    initial_position * (1 - commission / 100)
+                    / order_price
+                )
+
+            # Set order details
+            order_date = time[i]
+            liquidation_price = adjust(
+                order_price * (1 - (1 / leverage)), p_precision
+            )
+            stop_price[i] = adjust(
+                dst_lower_band[i] * (100 - stop) / 100, p_precision
+            )
+            # Set take profit levels...
+
+            open_deals_log = logs.open(
+                open_deals_log,
+                position_type,
+                order_signal,
+                order_date,
+                order_price,
+                order_size
+            )
+
+            alert_open_long = True
 
     return (
         completed_deals_log,
         open_deals_log,
-        take_price,
+        take_prices,
         stop_price,
-        # ... other outputs
+        alert_cancel,
+        alert_open_long,
+        alert_open_short,
+        alert_long_new_stop,
+        alert_short_new_stop
     )
 ```
 
 See [Constants Reference](../references/constants.md#signal-codes) for predefined entry and close signal codes.
+
+### Working with Deal Logs
+
+#### Deal Log Structure
+
+The strategy maintains two primary logs:
+
+- **`completed_deals_log`** — Records all finished trades with PnL calculations
+- **`open_deals_log`** — Tracks currently active positions
+
+#### Opening Positions
+
+When entering a new position, use `logs.open()` to record the trade:
+
+```python
+position_type = 0
+order_signal = 100
+order_date = time[i]
+order_price = close[i]
+order_size = 5.0
+
+open_deals_log = logs.open(
+    open_deals_log,
+    position_type,
+    order_signal,
+    order_date,
+    order_price,
+    order_size
+)
+```
+
+#### Closing Positions
+
+When exiting positions, use `logs.close()` to record the completed trade and calculate PnL:
+
+```python
+commission = 0.05
+exit_signal = 500
+exit_date = time[i]
+exit_price = stop_price[i]
+
+completed_deals_log, pnl = logs.close(
+    completed_deals_log,
+    commission,
+    position_type,
+    order_signal,
+    exit_signal,
+    order_date,
+    exit_date,
+    order_price,
+    exit_price,
+    order_size,
+    initial_capital
+)
+equity += pnl
+```
+
+#### Position Analysis
+
+Use helper functions to analyze current positions:
+
+```python
+# Check if positions are open
+current_size = logs.size(open_deals_log)
+if current_size > 0:
+    # Position management logic
+    average_entry = logs.avg_price(open_deals_log)
+    position_count = logs.count(open_deals_log)
+```
+
+See [Logs Module Reference](../references/logs.md) for complete function documentation and usage examples.
 
 ### Trade Method Implementation
 
 The `trade()` method executes orders based on calculated signals:
 
 ```python
-def trade(self, client: BaseExchangeClient) -> None:
+def trade(self) -> None:
     # Cancel all orders if needed
     if self.alert_cancel:
-        client.trade.cancel_all_orders(self.symbol)
+        self.client.trade.cancel_all_orders(self.symbol)
 
     # Check order status
-    self.order_ids['stop_ids'] = client.trade.check_stop_orders(
+    self.order_ids['stop_ids'] = self.client.trade.check_stop_orders(
         symbol=self.symbol,
         order_ids=self.order_ids['stop_ids']
     )
-    self.order_ids['limit_ids'] = client.trade.check_limit_orders(
+    self.order_ids['limit_ids'] = self.client.trade.check_limit_orders(
         symbol=self.symbol,
         order_ids=self.order_ids['limit_ids']
     )
 
     # Update stop loss
     if self.alert_long_new_stop:
-        client.trade.cancel_stop_orders(
+        self.client.trade.cancel_stop_orders(
             symbol=self.symbol,
             side='sell'
         )
-        self.order_ids['stop_ids'] = client.trade.check_stop_orders(
+        self.order_ids['stop_ids'] = self.client.trade.check_stop_orders(
             symbol=self.symbol,
             order_ids=self.order_ids['stop_ids']
         )
-        order_id = client.trade.market_stop_close_long(
+        order_id = self.client.trade.market_stop_close_long(
             symbol=self.symbol,
             size='100%',
             price=self.stop_price[-1],
@@ -337,7 +504,7 @@ def trade(self, client: BaseExchangeClient) -> None:
 
     # Open long position
     if self.alert_open_long:
-        client.trade.market_open_long(
+        self.client.trade.market_open_long(
             symbol=self.symbol,
             size=(
                 f'{self.params['position_size']}'
@@ -349,7 +516,7 @@ def trade(self, client: BaseExchangeClient) -> None:
             leverage=self.params['leverage'],
             hedge=False
         )
-        order_id = client.trade.market_stop_close_long(
+        order_id = self.client.trade.market_stop_close_long(
             symbol=self.symbol,
             size='100%',
             price=self.stop_price[-1],
@@ -359,7 +526,7 @@ def trade(self, client: BaseExchangeClient) -> None:
         if order_id:
             self.order_ids['stop_ids'].append(order_id)
 
-        order_id = client.trade.limit_close_long(
+        order_id = self.client.trade.limit_close_long(
             symbol=self.symbol,
             size=f'{self.take_volumes[0]}%',
             price=self.take_prices[0, -1],
@@ -370,7 +537,7 @@ def trade(self, client: BaseExchangeClient) -> None:
             self.order_ids['limit_ids'].append(order_id)
 ```
 
-See [Exchange Clients Reference](../references/exchange_clients.md) for a detailed overview of available methods and usage examples for `client`.
+See [Exchange Clients](../references/exchange_clients.md) for a detailed overview of available methods and usage examples for `self.client`.
 
 ---
 
@@ -391,8 +558,8 @@ def calculate(self) -> None:
     # self.volume – trading volume
 
     # Use main timeframe data directly in calculations
-    self.rsi = quantklines.rsi(source=self.close, length=14)
-    self.sma = quantklines.sma(source=self.close, length=20)
+    self.rsi = quanta.rsi(source=self.close, length=14)
+    self.sma = quanta.sma(source=self.close, length=20)
 ```
 
 ### Defining Data Feeds
@@ -567,9 +734,10 @@ self.indicators = {
 
 ## <a id="references"></a> 📚 References
 
-- **Constants** — See [Constants Reference](../references/constants.md) for signal codes, indicator color definitions, and style settings.
-- **Technical Analysis** — See [QuantKlines Library Reference](../references/quantklines_lib.md) for technical analysis functions and indicators.
-- **Exchange Clients** — See [Exchange Clients Reference](../references/exchange_clients.md) for trading API methods and usage examples.
+- [Exchange Clients](docs/references/exchange_clients.md)
+- [Quanta Library](docs/references/quanta_lib.md)
+- [Logs Module](docs/references/logs.md)
+- [Constants](docs/references/constants.md)
 
 ---
 

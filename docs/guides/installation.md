@@ -202,18 +202,18 @@ CORS_ORIGINS=https://your-ngrok-url.ngrok.io
 
 ### Exchange API Credentials
 
-Add your exchange credentials to the `.env` file:
+Add your exchange credentials to the `.env` file. For multiple accounts, separate keys and secrets with commas:
 
 ```env
 # --- Bybit Exchange ---
-# Get from: https://www.bybit.com/app/user/api-management
-BYBIT_API_KEY=your-bybit-api-key
-BYBIT_API_SECRET=your-bybit-api-secret
+# Get from: https://www.binance.com/en/my/settings/api-management
+BYBIT_API_KEYS=your-first-bybit-key,your-second-bybit-key
+BYBIT_API_SECRETS=your-first-bybit-secret,your-second-bybit-secret
 
 # --- Binance Exchange ---
 # Get from: https://www.binance.com/en/my/settings/api-management
-BINANCE_API_KEY=your-binance-api-key
-BINANCE_API_SECRET=your-binance-api-secret
+BINANCE_API_KEYS=your-first-binance-key,your-second-binance-key
+BINANCE_API_SECRETS=your-first-binance-secret,your-second-binance-secret
 ```
 
 #### Binance API Setup
