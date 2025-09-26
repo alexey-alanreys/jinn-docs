@@ -1,8 +1,8 @@
-# Logs Module Reference
+# Log Module Reference
 
-The **logs** module provides efficient functions for managing trading position records during backtesting and strategy execution. All functions are optimized with Numba JIT compilation for maximum performance.
+The **log** module provides efficient functions for managing trading position records during backtesting and strategy execution. All functions are optimized with Numba JIT compilation for maximum performance.
 
-> **Note:** All code examples assume the module is imported as `logs`.
+> **Note:** All code examples assume the module is imported as `log`.
 
 ## Table of Contents
 
@@ -14,7 +14,7 @@ The **logs** module provides efficient functions for managing trading position r
 
 ## <a id="deal-management"></a> Deal Management
 
-Functions for creating, closing, and modifying deal records in trading logs.
+Functions for creating, closing, and modifying deal records in trading log.
 
 ### open()
 
@@ -53,7 +53,7 @@ order_date = time[i]
 order_price = close[i]
 order_size = 5.0
 
-open_deals_log = logs.open(
+open_deals_log = log.open(
     open_deals_log,
     position_type,
     order_signal,
@@ -116,7 +116,7 @@ exit_signal = 500
 exit_date = time[i]
 exit_price = stop_price[i]
 
-completed_deals_log, pnl = logs.close(
+completed_deals_log, pnl = log.close(
     completed_deals_log,
     commission,
     position_type,
@@ -136,7 +136,7 @@ equity += pnl
 
 ## <a id="log-operations"></a> Log Operations
 
-Functions for modifying and maintaining deal logs.
+Functions for modifying and maintaining deal log.
 
 ### remove()
 
@@ -159,7 +159,7 @@ Removes a deal from open deals log by setting its row to NaN.
 
 ```python
 # Remove specific deal after full closure
-open_deals_log = logs.remove(open_deals_log, 0)
+open_deals_log = log.remove(open_deals_log, 0)
 ```
 
 ### resize()
@@ -190,7 +190,7 @@ Updates the position size for a specific deal in open deals log.
 ```python
 # Partial close - reduce position size after first take profit
 remaining_size = order_size - take_quantities[0]
-open_deals_log = logs.resize(open_deals_log, 0, remaining_size)
+open_deals_log = log.resize(open_deals_log, 0, remaining_size)
 ```
 
 ### clear()
@@ -213,7 +213,7 @@ Clears all deals from open deals log by setting all values to NaN.
 
 ```python
 # Clear all open positions after liquidation or full exit
-open_deals_log = logs.clear(open_deals_log)
+open_deals_log = log.clear(open_deals_log)
 position_type = np.nan
 # Reset other position variables...
 ```
@@ -244,7 +244,7 @@ Calculates the average entry price weighted by position size from open deals log
 
 ```python
 # Get average entry price for open positions
-avg_entry_price = logs.avg_price(open_deals_log)
+avg_entry_price = log.avg_price(open_deals_log)
 if not np.isnan(avg_entry_price):
     liquidation_price = adjust(
         avg_entry_price * (1 - (1 / leverage)),
@@ -276,7 +276,7 @@ Calculates the total position size from open deals log.
 
 ```python
 # Check current position size
-current_size = logs.size(open_deals_log)
+current_size = log.size(open_deals_log)
 if current_size > 0:
     # Position is open - manage exits
     # ...
@@ -302,7 +302,7 @@ Counts the number of active (non-NaN) deals in open deals log.
 
 ```python
 # Limit maximum number of concurrent positions
-active_positions = logs.count(open_deals_log)
+active_positions = log.count(open_deals_log)
 if active_positions < max_positions and entry_signal:
     # Allow new position entry
     # ...

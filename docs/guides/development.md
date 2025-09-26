@@ -1,6 +1,6 @@
 # Strategy Development Guide
 
-This guide shows how to build custom trading strategies for **Jinn**, using `ExampleV1` as a detailed example. Integrating a strategy into **Jinn** is straightforward: custom strategy modules are simply placed in the `jinn-core/src/core/strategies` folder. In addition to reading this guide, it is strongly recommended to independently study the built-in **Jinn** strategies `ExampleV1` and `ExampleV2`.
+This guide shows how to build custom trading strategies for **Jinn**, using `ExampleV1` and `ExampleV2` as a detailed examples. In addition to reading this guide, it is strongly recommended to independently study the built-in **Jinn** strategies `ExampleV1` and `ExampleV2`.
 
 ## Table of Contents
 
@@ -15,6 +15,12 @@ This guide shows how to build custom trading strategies for **Jinn**, using `Exa
 ---
 
 ## <a id="strategy-architecture"></a> 🏗️ Strategy Architecture
+
+### Integration
+
+To integrate a custom strategy into **Jinn**, place the strategy module in the `jinn-core/src/core/strategies` folder.
+
+### Core Structure
 
 Custom strategies in **Jinn** inherit from the `BaseStrategy` class and must implement two core methods:
 
@@ -110,14 +116,11 @@ from . import (
     adjust,
     colors,
     quanta,
-    logs
+    log
 )
 
 
 class ExampleV1(BaseStrategy):
-    def __init__(self, params: dict | None = None) -> None:
-        super().__init__(params)
-
     def calculate(self) -> None:
         pass
 
@@ -233,7 +236,7 @@ def _calculate_loop(
 
         # Check for liquidation
         if (position_type == 0 and low[i] <= liquidation_price):
-            completed_deals_log, pnl = logs.close(
+            completed_deals_log, pnl = log.close(
                 completed_deals_log,
                 commission,
                 position_type,
@@ -249,7 +252,7 @@ def _calculate_loop(
             equity += pnl
 
             # Reset variables
-            open_deals_log = logs.clear(open_deals_log)
+            open_deals_log = log.clear(open_deals_log)
             position_type = np.nan
             order_signal = np.nan
             order_date = np.nan
@@ -267,7 +270,7 @@ def _calculate_loop(
             # Stop loss check
             if low[i] <= stop_price[i]:
                 # Close position and log deal
-                completed_deals_log, pnl = logs.close(
+                completed_deals_log, pnl = log.close(
                     completed_deals_log,
                     commission,
                     position_type,
@@ -282,7 +285,7 @@ def _calculate_loop(
                 )
                 equity += pnl
 
-                open_deals_log = logs.clear(open_deals_log)
+                open_deals_log = log.clear(open_deals_log)
                 position_type = np.nan
                 # Reset other position variables...
                 alert_cancel = True
@@ -293,7 +296,7 @@ def _calculate_loop(
                 high[i] >= take_prices[0, i]
             ):
                 # Partial close at first TP level
-                completed_deals_log, pnl = logs.close(
+                completed_deals_log, pnl = log.close(
                     completed_deals_log,
                     commission,
                     position_type,
@@ -309,7 +312,7 @@ def _calculate_loop(
                 equity += pnl
 
                 order_size = round(order_size - take_quantities[0], 8)
-                open_deals_log = logs.resize(
+                open_deals_log = log.resize(
                     open_deals_log, 0, order_size
                 )
                 take_prices[0, i] = np.nan
@@ -365,7 +368,7 @@ def _calculate_loop(
             )
             # Set take profit levels...
 
-            open_deals_log = logs.open(
+            open_deals_log = log.open(
                 open_deals_log,
                 position_type,
                 order_signal,
@@ -402,7 +405,7 @@ The strategy maintains two primary logs:
 
 #### Opening Positions
 
-When entering a new position, use `logs.open()` to record the trade:
+When entering a new position, use `log.open()` to record the trade:
 
 ```python
 position_type = 0
@@ -411,7 +414,7 @@ order_date = time[i]
 order_price = close[i]
 order_size = 5.0
 
-open_deals_log = logs.open(
+open_deals_log = log.open(
     open_deals_log,
     position_type,
     order_signal,
@@ -423,7 +426,7 @@ open_deals_log = logs.open(
 
 #### Closing Positions
 
-When exiting positions, use `logs.close()` to record the completed trade and calculate PnL:
+When exiting positions, use `log.close()` to record the completed trade and calculate PnL:
 
 ```python
 commission = 0.05
@@ -431,7 +434,7 @@ exit_signal = 500
 exit_date = time[i]
 exit_price = stop_price[i]
 
-completed_deals_log, pnl = logs.close(
+completed_deals_log, pnl = log.close(
     completed_deals_log,
     commission,
     position_type,
@@ -453,14 +456,14 @@ Use helper functions to analyze current positions:
 
 ```python
 # Check if positions are open
-current_size = logs.size(open_deals_log)
+current_size = log.size(open_deals_log)
 if current_size > 0:
     # Position management logic
-    average_entry = logs.avg_price(open_deals_log)
-    position_count = logs.count(open_deals_log)
+    average_entry = log.avg_price(open_deals_log)
+    position_count = log.count(open_deals_log)
 ```
 
-See [Logs Module Reference](../references/logs.md) for complete function documentation and usage examples.
+See [Log Module Reference](../references/log.md) for complete function documentation and usage examples.
 
 ### Trade Method Implementation
 
@@ -633,23 +636,23 @@ indicator_options = {
     'HTF': {
         'pane': 0,
         'type': 'line',
-        'color': colors.CRIMSON,
+        'color': colors.RED_600,
     },
-    'SL': {
+    'EP #2': {
         'pane': 0,
         'type': 'line',
-        'color': colors.CRIMSON,
+        'color': colors.PURPLE_900,
     },
-    'TP #1': {
+    ...
+    'TP': {
         'pane': 0,
         'type': 'line',
-        'color': colors.GREEN,
+        'color': colors.GREEN_800,
     },
     'Volume': {
         'pane': 1,
         'type': 'histogram',
     },
-    # ... other settings
 }
 
 # Set up indicators dictionary in calculate()
@@ -658,13 +661,14 @@ self.indicators = {
         'options': self.indicator_options['HTF'],
         'values': self.htf_close,
     },
-    'SL': {
-        'options': self.indicator_options['SL'],
-        'values': self.stop_price,
+    'EP #2': {
+        'options': self.indicator_options['EP #2'],
+        'values': self.entry_price_2,
     },
-    'TP #1': {
-        'options': self.indicator_options['TP #1'],
-        'values': self.take_prices[0],
+    ...
+    'TP': {
+        'options': self.indicator_options['TP'],
+        'values': self.take_price,
     },
     'Volume': {
         'options': self.indicator_options['Volume'],
@@ -675,7 +679,6 @@ self.indicators = {
             self.volume_color_2
         ),
     },
-    # ... other indicators
 }
 ```
 
@@ -687,11 +690,12 @@ Define dynamic colors for volume bars:
 
 ```python
 # Define volume colors
-volume_color_1 = colors.PEACOCK_GREEN
-volume_color_2 = colors.CHERRY_RED
+volume_color_1 = colors.TEAL_700
+volume_color_2 = colors.RED_500
 
 # Assign colors in calculate() method
 self.indicators = {
+    # ... other indicators
     'Volume': {
         'options': self.indicator_options['Volume'],
         'values': self.volume,
@@ -701,7 +705,6 @@ self.indicators = {
             self.volume_color_2
         ),
     },
-    # ... other indicators
 }
 ```
 
@@ -736,7 +739,7 @@ self.indicators = {
 
 - [Exchange Clients](docs/references/exchange_clients.md)
 - [Quanta Library](docs/references/quanta_lib.md)
-- [Logs Module](docs/references/logs.md)
+- [Log Module](docs/references/log.md)
 - [Constants](docs/references/constants.md)
 
 ---

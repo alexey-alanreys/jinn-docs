@@ -1,14 +1,13 @@
 # Installation Guide
 
-This guide provides step-by-step instructions for setting up **Jinn**. Please follow the steps carefully to ensure reliable installation.
+This guide provides step-by-step instructions for setting up **Jinn** using Docker.
 
 ## Table of Contents
 
 - [System Requirements](#system-requirements)
-- [Install Python](#step-1-install-python-313)
-- [Download the Framework](#step-2-download-the-jinn-framework)
-- [Install Dependencies](#step-3-install-dependencies-using-poetry)
-- [Configuration](#step-4-configuration)
+- [Download the Jinn Framework](#step-1-download-the-jinn-framework)
+- [Docker Setup & Running Jinn](#step-2-docker-setup-running-jinn)
+- [Setup Configuration](#step-3-setup-configuration)
 - [Troubleshooting](#troubleshooting)
 
 ---
@@ -17,11 +16,11 @@ This guide provides step-by-step instructions for setting up **Jinn**. Please fo
 
 ### Minimum Requirements
 
-- **Operating System**: Windows 10+, macOS 10.14+, or Linux (Ubuntu 18.04+).
-- **Python Version**: 3.13 (required).
-- **RAM**: 2 GB minimum (4 GB recommended).
-- **Storage**: 2 GB of free space.
-- **Internet**: Stable broadband connection.
+- **Operating System**: Windows 10+, macOS 10.14+, or Linux (Ubuntu 18.04+)
+- **Docker**: 24.0+ (with Docker Compose)
+- **RAM**: 2 GB minimum (4 GB recommended)
+- **Storage**: 2 GB free space
+- **Internet**: Stable connection
 
 ### Prerequisites
 
@@ -31,118 +30,62 @@ This guide provides step-by-step instructions for setting up **Jinn**. Please fo
 
 ---
 
-## <a id="step-1-install-python-313"></a> 🐍 Step 1: Install Python 3.13
+## <a id="step-1-download-the-jinn-framework"></a> 📦 Step 1: Download the Jinn Framework
+
+Clone the repository to get the latest version of the project:
 
 ### Windows
-
-1. Download Python 3.13 from [python.org](https://www.python.org/downloads/).
-2. Run the installer as **Administrator**.
-3. Ensure **"Add Python to PATH"** is checked.
-4. Verify installation:
-
-```cmd
-python --version
-```
-
-### macOS
-
-```bash
-# Recommended: install via Homebrew
-brew install python@3.13
-
-# Or download and install manually from python.org
-```
-
-### Linux (Ubuntu/Debian)
-
-```bash
-sudo apt update
-sudo apt install python3.13 python3.13-pip python3.13-venv
-python3.13 --version
-```
-
----
-
-## <a id="step-2-download-the-jinn-framework"></a> 📦 Step 2: Download the Jinn Framework
-
-You can either clone the repository or extract the ZIP archive manually, depending on your preference.
-
-### Windows
-
-1. Open a terminal and navigate to your project directory:
 
 ```cmd
 cd C:\Trading
-```
-
-2. Clone the repository:
-
-```cmd
 git clone https://github.com/albert-alanreys/jinn-core.git
-```
-
-3. Navigate into the project folder:
-
-```cmd
 cd jinn-core
 ```
 
 ### macOS/Linux
 
-1. Open a terminal and navigate to your project directory:
-
 ```bash
 cd ~/Trading
-```
-
-2. Clone the repository:
-
-```bash
 git clone https://github.com/albert-alanreys/jinn-core.git
-```
-
-3. Navigate into the project folder:
-
-```bash
 cd jinn-core
 ```
 
 ---
 
-## <a id="step-3-install-dependencies-using-poetry"></a> 📚 Step 3: Install Dependencies Using Poetry
+## <a id="step-2-docker-setup-running-jinn"></a> 🐳 Step 2: Docker Setup & Running Jinn
 
-### 1. Install Poetry (if not already installed)
+### Install Docker
 
-```bash
-pip install --user poetry
-```
+1. Go to the official Docker website: https://www.docker.com/get-started
+2. Download Docker Desktop for your operating system.
+3. Follow the installation instructions.
+4. On Linux, install Docker Engine and Docker Compose using your package manager.
 
-### 2. Install Project Dependencies
+### Build the Docker Image
 
-```bash
-poetry install --no-root
-```
-
-### 3. Verify the Virtual Environment
+First, build the Docker image:
 
 ```bash
-poetry env info
+docker-compose build
 ```
 
-### 4. Test the Installation
+### Run Jinn with Docker
 
-Run a test launch to verify that **Jinn** is running correctly:
+Start the container in detached mode:
 
 ```bash
-poetry run python run.py
+docker-compose up -d
 ```
 
-The server should start successfully and display startup messages.  
-Press `Ctrl+C` to stop the server after confirming it runs without errors.
+- `-d` runs the container in the background.
+
+Access the server at `http://localhost:1001/`.
+
+> **Note:** Even though the server binds to `0.0.0.0:1001` internally, Docker maps this to `localhost` on your machine.
 
 ---
 
-## <a id="step-4-configuration"></a> ⚙️ Step 4: Configuration
+## <a id="step-3-setup-configuration"></a> ⚙️ Step 3: Setup Configuration
 
 ### Create the Environment File
 
@@ -155,7 +98,7 @@ Press `Ctrl+C` to stop the server after confirming it runs without errors.
 
 Choose one of the following deployment setups:
 
-#### Setup 1: Local Development _(Standard for everyday use)_
+#### Local Development (Default)
 
 To run **Jinn** locally on your machine, use the following server configuration:
 
@@ -165,18 +108,18 @@ BASE_URL=
 SERVER_PORT=1001
 
 # --- CORS & Security ---
-CORS_ORIGINS=http://localhost:5173
+CORS_ORIGINS=
 ```
 
 **Configuration Details:**
 
-- **BASE_URL**: Leave empty. **Jinn** will automatically use `http://127.0.0.1`.
-- **SERVER_PORT**: You can change this port if needed (default: 1001).
-- **CORS_ORIGINS**: Keep as `http://localhost:5173` (used for frontend development).
+- **BASE_URL**: Leave empty for local setup.
+- **SERVER_PORT**: Default 1001, can be changed.
+- **CORS_ORIGINS**: Leave empty for local setup.
 
-Access **Jinn** at: `http://127.0.0.1:1001`.
+Access **Jinn** at: `http://localhost:1001/`.
 
-#### Setup 2: Remote Access _(For external monitoring or automation)_
+#### Remote Access (Optional)
 
 To expose the server publicly via a tunneling service (e.g., ngrok):
 
@@ -198,15 +141,13 @@ SERVER_PORT=1001
 CORS_ORIGINS=https://your-ngrok-url.ngrok.io
 ```
 
-**Important:** Replace `your-ngrok-url.ngrok.io` with the actual URL provided by your tunneling service.
-
 ### Exchange API Credentials
 
 Add your exchange credentials to the `.env` file. For multiple accounts, separate keys and secrets with commas:
 
 ```env
 # --- Bybit Exchange ---
-# Get from: https://www.binance.com/en/my/settings/api-management
+# Get from: https://www.bybit.com/app/user/api-management
 BYBIT_API_KEYS=your-first-bybit-key,your-second-bybit-key
 BYBIT_API_SECRETS=your-first-bybit-secret,your-second-bybit-secret
 
@@ -271,7 +212,7 @@ TEST_WINDOW=0.3
 
 #### Parameter Explanations
 
-- **MAX_PROCESSES**: Number of parallel processes for optimization. Leave empty for automatic detection based on CPU cores.
+- **MAX_PROCESSES**: Number of parallel optimization processes. Leave empty for auto-detection based on CPU cores.
 - **OPTIMIZATION_ITERATIONS**: Number of iterations per optimization run (default: 2000).
 - **OPTIMIZATION_RUNS**: Number of independent optimization runs to perform (default: 3).
 - **POPULATION_SIZE**: Initial population size for genetic algorithm (default: 200).
@@ -289,78 +230,25 @@ TEST_WINDOW=0.3
 
 ## <a id="troubleshooting"></a> 🛠️ Troubleshooting
 
-### Python PATH Issues (Windows)
+### Docker Issues
 
-If `python` is not recognized in Command Prompt:
-
-- Reinstall Python and ensure **"Add to PATH"** is selected during installation.
-- Alternatively, use `py` instead of `python`.
-- Restart your terminal session after installation.
-- Manually add Python to PATH via System Environment Variables if needed.
-
-### Poetry Installation Issues
-
-If the `poetry` command is not found:
-
-- Ensure the installation directory is in your PATH:
-  - Unix-like systems: `~/.local/bin`
-  - Windows: `%APPDATA%\Python\Scripts`
-- Add to PATH manually:
-
-```bash
-# Unix-like systems
-export PATH="$HOME/.local/bin:$PATH"
-
-# Windows (add via Environment Variables GUI)
-# Add %APPDATA%\Python\Scripts to your PATH
-```
-
-### Virtual Environment Issues
-
-If you encounter virtual environment problems:
-
-- Use Poetry's built-in shell activation:
-
-```bash
-poetry shell
-```
-
-- Run commands via Poetry explicitly:
-
-```bash
-poetry run python run.py
-```
-
-- Reset the virtual environment if corrupted:
-
-```bash
-poetry env remove python
-poetry install --no-root
-```
+- Try rebuilding the image with `docker-compose build --no-cache` if encountering build issues.
+- Check Docker logs with `docker-compose logs` for detailed error information.
+- Ensure Docker Desktop is running before executing commands.
 
 ### API Connectivity Problems
 
-If you encounter API-related issues:
-
 - Verify all API keys and secrets are correctly copied without extra spaces.
-- Ensure your API keys have the required permissions enabled.
 - Check IP whitelist settings on your exchange accounts (if configured).
-- Confirm your internet connection and firewall settings allow outbound connections.
-- Test API connectivity using the exchange's official testing tools.
+- Ensure your API keys have the required permissions enabled.
 
 ### Server Access Issues
 
-If the web interface is not accessible:
-
-- Verify the server port (default: 1001) is not blocked by firewall or antivirus.
-- Check that no other applications are using the same port.
-- Ensure BASE_URL configuration matches your access method.
-- For remote access, confirm the tunneling service is active and properly configured.
 - Try accessing via different browsers or in incognito/private mode.
+- Verify the server port is not blocked by firewall or antivirus.
+- Check that no other applications are using the same port.
 
 ### Performance Issues
-
-If optimization runs slowly or fails:
 
 - Reduce OPTIMIZATION_ITERATIONS and POPULATION_SIZE.
 - Increase MAX_PROCESSES only up to your CPU core count.

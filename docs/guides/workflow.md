@@ -17,20 +17,41 @@ This guide explains how to use the built-in strategies of **Jinn** across three 
 
 ### Launching the Application
 
-To start **Jinn**, navigate to the project directory and execute the following command:
+To start **Jinn**, ensure Docker Desktop is running and navigate to the project directory where you cloned the repository.
+
+#### First-time Setup
+
+If you're running **Jinn** for the first time, build and start the container:
 
 ```bash
-poetry run python run.py
+docker-compose build
+docker-compose up -d
 ```
 
-Once the application starts successfully, open your web browser and navigate to the provided address. By default, this will be `http://127.0.0.1:1001` (unless you've modified the `SERVER_PORT` or `BASE_URL` settings in your `.env` file).
+#### Regular Startup
+
+For normal day-to-day use, simply start the existing container:
+
+```bash
+docker-compose up -d
+```
+
+Once the application has successfully launched, open a web browser and navigate to `http://localhost:1001/` (unless you have changed the `SERVER_PORT` or `BASE_URL` settings in the `.env` file).
+
+#### Stopping the Application
+
+To stop the application:
+
+```bash
+docker-compose down
+```
 
 ### Strategic Workflow
 
 **Jinn** follows a systematic three-phase approach:
 
 - 📈 **Optimization** — Identify strategy parameters to maximize profitability.
-- 🔍 **Backtesting** — Evaluate strategies on historical data with robust metrics.
+- 📊 **Backtesting** — Evaluate strategies on historical data with robust metrics.
 - 🤖 **Live Trading** — Run and manage strategies in real-time market environments.
 
 ---
@@ -179,7 +200,7 @@ The _Live Trading Alerts_ tab will display notifications from strategies executi
 ### System Maintenance
 
 1. **Keep APIs Updated:** Regularly verify exchange connectivity and API key validity.
-2. **Update Dependencies:** Keep all Python packages and system components current.
+2. **Update Dependencies:** Keep Docker images and system components current.
 3. **Backup Configurations:** Save successful parameter sets and configuration files.
 4. **Monitor Resources:** Ensure sufficient CPU, memory, and disk space for operations.
 5. **Log Analysis:** Regularly review application logs for warnings or errors.
@@ -222,6 +243,13 @@ The _Live Trading Alerts_ tab will display notifications from strategies executi
 
 ### Technical Problems
 
+#### Docker Issues
+
+- Ensure Docker Desktop is running before starting the application.
+- Check container status with `docker-compose ps`.
+- View application logs with `docker-compose logs`.
+- Restart the container with `docker-compose restart`.
+
 #### Connection Issues
 
 - Test internet connection stability and speed.
@@ -237,7 +265,7 @@ The _Live Trading Alerts_ tab will display notifications from strategies executi
 
 ### Getting Help
 
-1. **Check Application Logs:** Review log files for detailed error messages and debugging information.
+1. **Check Application Logs:** Review log files with `docker-compose logs` for detailed error messages and debugging information.
 2. **Verify Configuration:** Double-check all settings against the documentation examples.
 3. **Documentation Review:** Ensure you're following the latest workflow procedures and best practices.
 

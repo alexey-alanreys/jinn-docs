@@ -84,148 +84,27 @@ Display settings used in `indicator_options` to control the visual appearance of
 
 Color constants used in `indicator_options` to control the visual appearance of indicators.
 
-| Name       | RGB            | Hex Code  | Preview                                            |
-| ---------- | -------------- | --------- | -------------------------------------------------- |
-| CORAL      | (255, 127, 80) | `#FF7F50` | ![](https://singlecolorimage.com/get/FF7F50/60x20) |
-| TOMATO     | (255, 99, 71)  | `#FF6347` | ![](https://singlecolorimage.com/get/FF6347/60x20) |
-| CHERRY_RED | (242, 54, 69)  | `#F23645` | ![](https://singlecolorimage.com/get/F23645/60x20) |
-| CRIMSON    | (220, 20, 60)  | `#DC143C` | ![](https://singlecolorimage.com/get/DC143C/60x20) |
-| FIREBRICK  | (178, 34, 34)  | `#B22222` | ![](https://singlecolorimage.com/get/B22222/60x20) |
-| RED        | (255, 0, 0)    | `#FF0000` | ![](https://singlecolorimage.com/get/FF0000/60x20) |
-| DARK_RED   | (139, 0, 0)    | `#8B0000` | ![](https://singlecolorimage.com/get/8B0000/60x20) |
-
-### Pink Colors
-
-| Name              | RGB             | Hex Code  | Preview                                            |
-| ----------------- | --------------- | --------- | -------------------------------------------------- |
-| PINK              | (255, 192, 203) | `#FFC0CB` | ![](https://singlecolorimage.com/get/FFC0CB/60x20) |
-| HOT_PINK          | (255, 105, 180) | `#FF69B4` | ![](https://singlecolorimage.com/get/FF69B4/60x20) |
-| PALE_VIOLET_RED   | (219, 112, 147) | `#DB7093` | ![](https://singlecolorimage.com/get/DB7093/60x20) |
-| DEEP_PINK         | (255, 20, 147)  | `#FF1493` | ![](https://singlecolorimage.com/get/FF1493/60x20) |
-| MEDIUM_VIOLET_RED | (199, 21, 133)  | `#C71585` | ![](https://singlecolorimage.com/get/C71585/60x20) |
-
-### Orange Colors
-
-| Name        | RGB            | Hex Code  | Preview                                            |
-| ----------- | -------------- | --------- | -------------------------------------------------- |
-| ORANGE      | (255, 165, 0)  | `#FFA500` | ![](https://singlecolorimage.com/get/FFA500/60x20) |
-| DARK_ORANGE | (255, 140, 0)  | `#FF8C00` | ![](https://singlecolorimage.com/get/FF8C00/60x20) |
-| CORAL       | (255, 127, 80) | `#FF7F50` | ![](https://singlecolorimage.com/get/FF7F50/60x20) |
-| TOMATO      | (255, 99, 71)  | `#FF6347` | ![](https://singlecolorimage.com/get/FF6347/60x20) |
-| ORANGE_RED  | (255, 69, 0)   | `#FF4500` | ![](https://singlecolorimage.com/get/FF4500/60x20) |
-
-### Yellow Colors
-
-| Name           | RGB             | Hex Code  | Preview                                            |
-| -------------- | --------------- | --------- | -------------------------------------------------- |
-| LIGHT_YELLOW   | (255, 255, 224) | `#FFFFE0` | ![](https://singlecolorimage.com/get/FFFFE0/60x20) |
-| LEMON_CHIFFON  | (255, 250, 205) | `#FFFACD` | ![](https://singlecolorimage.com/get/FFFACD/60x20) |
-| YELLOW         | (255, 255, 0)   | `#FFFF00` | ![](https://singlecolorimage.com/get/FFFF00/60x20) |
-| PALE_GOLDENROD | (238, 232, 170) | `#EEE8AA` | ![](https://singlecolorimage.com/get/EEE8AA/60x20) |
-| GOLD           | (255, 215, 0)   | `#FFD700` | ![](https://singlecolorimage.com/get/FFD700/60x20) |
-
-### Green Colors
-
-| Name             | RGB            | Hex Code  | Preview                                            |
-| ---------------- | -------------- | --------- | -------------------------------------------------- |
-| SPRING_GREEN     | (0, 255, 127)  | `#00FF7F` | ![](https://singlecolorimage.com/get/00FF7F/60x20) |
-| LIME             | (0, 255, 0)    | `#00FF00` | ![](https://singlecolorimage.com/get/00FF00/60x20) |
-| LIME_GREEN       | (50, 205, 50)  | `#32CD32` | ![](https://singlecolorimage.com/get/32CD32/60x20) |
-| MEDIUM_SEA_GREEN | (60, 179, 113) | `#3CB371` | ![](https://singlecolorimage.com/get/3CB371/60x20) |
-| OLIVE            | (128, 128, 0)  | `#808000` | ![](https://singlecolorimage.com/get/808000/60x20) |
-| SEA_GREEN        | (46, 139, 87)  | `#2E8B57` | ![](https://singlecolorimage.com/get/2E8B57/60x20) |
-| FOREST_GREEN     | (34, 139, 34)  | `#228B22` | ![](https://singlecolorimage.com/get/228B22/60x20) |
-| PEACOCK_GREEN    | (0, 137, 132)  | `#008984` | ![](https://singlecolorimage.com/get/008984/60x20) |
-| TEAL             | (0, 128, 128)  | `#008080` | ![](https://singlecolorimage.com/get/008080/60x20) |
-| DARK_OLIVE_GREEN | (85, 107, 47)  | `#556B2F` | ![](https://singlecolorimage.com/get/556B2F/60x20) |
-| GREEN            | (0, 128, 0)    | `#008000` | ![](https://singlecolorimage.com/get/008000/60x20) |
-
-### Cyan Colors
-
-| Name             | RGB             | Hex Code  | Preview                                            |
-| ---------------- | --------------- | --------- | -------------------------------------------------- |
-| LIGHT_CYAN       | (224, 255, 255) | `#E0FFFF` | ![](https://singlecolorimage.com/get/E0FFFF/60x20) |
-| AQUAMARINE       | (127, 255, 212) | `#7FFFD4` | ![](https://singlecolorimage.com/get/7FFFD4/60x20) |
-| PALE_TURQUOISE   | (175, 238, 238) | `#AFEEEE` | ![](https://singlecolorimage.com/get/AFEEEE/60x20) |
-| CYAN             | (0, 255, 255)   | `#00FFFF` | ![](https://singlecolorimage.com/get/00FFFF/60x20) |
-| AQUA             | (0, 255, 255)   | `#00FFFF` | ![](https://singlecolorimage.com/get/00FFFF/60x20) |
-| TURQUOISE        | (64, 224, 208)  | `#40E0D0` | ![](https://singlecolorimage.com/get/40E0D0/60x20) |
-| MEDIUM_TURQUOISE | (72, 209, 204)  | `#48D1CC` | ![](https://singlecolorimage.com/get/48D1CC/60x20) |
-| DARK_TURQUOISE   | (0, 206, 209)   | `#00CED1` | ![](https://singlecolorimage.com/get/00CED1/60x20) |
-
-### Blue Colors
-
-| Name             | RGB             | Hex Code  | Preview                                            |
-| ---------------- | --------------- | --------- | -------------------------------------------------- |
-| POWDER_BLUE      | (176, 224, 230) | `#B0E0E6` | ![](https://singlecolorimage.com/get/B0E0E6/60x20) |
-| LIGHT_BLUE       | (173, 216, 230) | `#ADD8E6` | ![](https://singlecolorimage.com/get/ADD8E6/60x20) |
-| LIGHT_SKY_BLUE   | (135, 206, 250) | `#87CEFA` | ![](https://singlecolorimage.com/get/87CEFA/60x20) |
-| LIGHT_STEEL_BLUE | (176, 196, 222) | `#B0C4DE` | ![](https://singlecolorimage.com/get/B0C4DE/60x20) |
-| SKY_BLUE         | (135, 206, 235) | `#87CEEB` | ![](https://singlecolorimage.com/get/87CEEB/60x20) |
-| CORNFLOWER_BLUE  | (100, 149, 237) | `#6495ED` | ![](https://singlecolorimage.com/get/6495ED/60x20) |
-| DEEP_SKY_BLUE    | (0, 191, 255)   | `#00BFFF` | ![](https://singlecolorimage.com/get/00BFFF/60x20) |
-| DODGER_BLUE      | (30, 144, 255)  | `#1E90FF` | ![](https://singlecolorimage.com/get/1E90FF/60x20) |
-| STEEL_BLUE       | (70, 130, 180)  | `#4682B4` | ![](https://singlecolorimage.com/get/4682B4/60x20) |
-| ROYAL_BLUE       | (65, 105, 225)  | `#4169E1` | ![](https://singlecolorimage.com/get/4169E1/60x20) |
-| MEDIUM_BLUE      | (0, 0, 205)     | `#0000CD` | ![](https://singlecolorimage.com/get/0000CD/60x20) |
-| BLUE             | (0, 0, 255)     | `#0000FF` | ![](https://singlecolorimage.com/get/0000FF/60x20) |
-| NAVY             | (0, 0, 128)     | `#000080` | ![](https://singlecolorimage.com/get/000080/60x20) |
-| DARK_BLUE        | (0, 0, 139)     | `#00008B` | ![](https://singlecolorimage.com/get/00008B/60x20) |
-| MIDNIGHT_BLUE    | (25, 25, 112)   | `#191970` | ![](https://singlecolorimage.com/get/191970/60x20) |
-
-### Purple / Violet / Magenta Colors
-
-| Name              | RGB             | Hex Code  | Preview                                            |
-| ----------------- | --------------- | --------- | -------------------------------------------------- |
-| THISTLE           | (216, 191, 216) | `#D8BFD8` | ![](https://singlecolorimage.com/get/D8BFD8/60x20) |
-| PLUM              | (221, 160, 221) | `#DDA0DD` | ![](https://singlecolorimage.com/get/DDA0DD/60x20) |
-| VIOLET            | (238, 130, 238) | `#EE82EE` | ![](https://singlecolorimage.com/get/EE82EE/60x20) |
-| PALE_VIOLET_RED   | (219, 112, 147) | `#DB7093` | ![](https://singlecolorimage.com/get/DB7093/60x20) |
-| ORCHID            | (218, 112, 214) | `#DA70D6` | ![](https://singlecolorimage.com/get/DA70D6/60x20) |
-| MAGENTA           | (255, 0, 255)   | `#FF00FF` | ![](https://singlecolorimage.com/get/FF00FF/60x20) |
-| FUCHSIA           | (255, 0, 255)   | `#FF00FF` | ![](https://singlecolorimage.com/get/FF00FF/60x20) |
-| MEDIUM_ORCHID     | (186, 85, 211)  | `#BA55D3` | ![](https://singlecolorimage.com/get/BA55D3/60x20) |
-| MEDIUM_PURPLE     | (147, 112, 219) | `#9370DB` | ![](https://singlecolorimage.com/get/9370DB/60x20) |
-| MEDIUM_VIOLET_RED | (199, 21, 133)  | `#C71585` | ![](https://singlecolorimage.com/get/C71585/60x20) |
-| BLUE_VIOLET       | (138, 43, 226)  | `#8A2BE2` | ![](https://singlecolorimage.com/get/8A2BE2/60x20) |
-| DARK_ORCHID       | (153, 50, 204)  | `#9932CC` | ![](https://singlecolorimage.com/get/9932CC/60x20) |
-| DARK_VIOLET       | (148, 0, 211)   | `#9400D3` | ![](https://singlecolorimage.com/get/9400D3/60x20) |
-| DARK_MAGENTA      | (139, 0, 139)   | `#8B008B` | ![](https://singlecolorimage.com/get/8B008B/60x20) |
-| PURPLE            | (128, 0, 128)   | `#800080` | ![](https://singlecolorimage.com/get/800080/60x20) |
-| INDIGO            | (75, 0, 130)    | `#4B0082` | ![](https://singlecolorimage.com/get/4B0082/60x20) |
-
-### White Colors
-
-| Name          | RGB             | Hex Code  | Preview                                            |
-| ------------- | --------------- | --------- | -------------------------------------------------- |
-| WHITE         | (255, 255, 255) | `#FFFFFF` | ![](https://singlecolorimage.com/get/FFFFFF/60x20) |
-| SNOW          | (255, 250, 250) | `#FFFAFA` | ![](https://singlecolorimage.com/get/FFFAFA/60x20) |
-| HONEYDEW      | (240, 255, 240) | `#F0FFF0` | ![](https://singlecolorimage.com/get/F0FFF0/60x20) |
-| MINTCREAM     | (245, 255, 250) | `#F5FFFA` | ![](https://singlecolorimage.com/get/F5FFFA/60x20) |
-| AZURE         | (240, 255, 255) | `#F0FFFF` | ![](https://singlecolorimage.com/get/F0FFFF/60x20) |
-| ALICEBLUE     | (240, 248, 255) | `#F0F8FF` | ![](https://singlecolorimage.com/get/F0F8FF/60x20) |
-| GHOSTWHITE    | (248, 248, 255) | `#F8F8FF` | ![](https://singlecolorimage.com/get/F8F8FF/60x20) |
-| WHITESMOKE    | (245, 245, 245) | `#F5F5F5` | ![](https://singlecolorimage.com/get/F5F5F5/60x20) |
-| SEASHELL      | (255, 245, 238) | `#FFF5EE` | ![](https://singlecolorimage.com/get/FFF5EE/60x20) |
-| BEIGE         | (245, 245, 220) | `#F5F5DC` | ![](https://singlecolorimage.com/get/F5F5DC/60x20) |
-| OLDLACE       | (253, 245, 230) | `#FDF5E6` | ![](https://singlecolorimage.com/get/FDF5E6/60x20) |
-| FLORALWHITE   | (255, 250, 240) | `#FFFAF0` | ![](https://singlecolorimage.com/get/FFFAF0/60x20) |
-| IVORY         | (255, 255, 240) | `#FFFFF0` | ![](https://singlecolorimage.com/get/FFFFF0/60x20) |
-| ANTIQUEWHITE  | (250, 235, 215) | `#FAEBD7` | ![](https://singlecolorimage.com/get/FAEBD7/60x20) |
-| LINEN         | (250, 240, 230) | `#FAF0E6` | ![](https://singlecolorimage.com/get/FAF0E6/60x20) |
-| LAVENDERBLUSH | (255, 240, 245) | `#FFF0F5` | ![](https://singlecolorimage.com/get/FFF0F5/60x20) |
-| MISTYROSE     | (255, 228, 225) | `#FFE4E1` | ![](https://singlecolorimage.com/get/FFE4E1/60x20) |
-
-### Gray / Black Colors
-
-| Name             | RGB             | Hex Code  | Preview                                            |
-| ---------------- | --------------- | --------- | -------------------------------------------------- |
-| LIGHT_GRAY       | (211, 211, 211) | `#D3D3D3` | ![](https://singlecolorimage.com/get/D3D3D3/60x20) |
-| GAINSBORO        | (220, 220, 220) | `#DCDCDC` | ![](https://singlecolorimage.com/get/DCDCDC/60x20) |
-| SILVER           | (192, 192, 192) | `#C0C0C0` | ![](https://singlecolorimage.com/get/C0C0C0/60x20) |
-| GRAY             | (128, 128, 128) | `#808080` | ![](https://singlecolorimage.com/get/808080/60x20) |
-| SLATE_GRAY       | (112, 128, 144) | `#708090` | ![](https://singlecolorimage.com/get/708090/60x20) |
-| LIGHT_SLATE_GRAY | (119, 136, 153) | `#778899` | ![](https://singlecolorimage.com/get/778899/60x20) |
-| DIM_GRAY         | (105, 105, 105) | `#696969` | ![](https://singlecolorimage.com/get/696969/60x20) |
-| DARK_SLATE_GRAY  | (47, 79, 79)    | `#2F4F4F` | ![](https://singlecolorimage.com/get/2F4F4F/60x20) |
-| BLACK            | (0, 0, 0)       | `#000000` | ![](https://singlecolorimage.com/get/000000/60x20) |
+| Name    | **50**                                             | **100**                                            | **200**                                            | **300**                                            | **400**                                            | **500**                                            | **600**                                            | **700**                                            | **800**                                            | **900**                                            | **950**                                            |
+| ------- | -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
+| RED     | ![](https://singlecolorimage.com/get/FEF2F2/40x20) | ![](https://singlecolorimage.com/get/FEE2E2/40x20) | ![](https://singlecolorimage.com/get/FECACA/40x20) | ![](https://singlecolorimage.com/get/FCA5A5/40x20) | ![](https://singlecolorimage.com/get/F87171/40x20) | ![](https://singlecolorimage.com/get/EF4444/40x20) | ![](https://singlecolorimage.com/get/DC2626/40x20) | ![](https://singlecolorimage.com/get/B91C1C/40x20) | ![](https://singlecolorimage.com/get/991B1B/40x20) | ![](https://singlecolorimage.com/get/7F1D1D/40x20) | ![](https://singlecolorimage.com/get/450A0A/40x20) |
+| ORANGE  | ![](https://singlecolorimage.com/get/FFF7ED/40x20) | ![](https://singlecolorimage.com/get/FFEDD5/40x20) | ![](https://singlecolorimage.com/get/FED7AA/40x20) | ![](https://singlecolorimage.com/get/FDBA74/40x20) | ![](https://singlecolorimage.com/get/FB923C/40x20) | ![](https://singlecolorimage.com/get/F97316/40x20) | ![](https://singlecolorimage.com/get/EA580C/40x20) | ![](https://singlecolorimage.com/get/C2410C/40x20) | ![](https://singlecolorimage.com/get/9A3412/40x20) | ![](https://singlecolorimage.com/get/7C2D12/40x20) | ![](https://singlecolorimage.com/get/431407/40x20) |
+| AMBER   | ![](https://singlecolorimage.com/get/FFFBEB/40x20) | ![](https://singlecolorimage.com/get/FEF3C7/40x20) | ![](https://singlecolorimage.com/get/FDE68A/40x20) | ![](https://singlecolorimage.com/get/FCD34D/40x20) | ![](https://singlecolorimage.com/get/FBBF24/40x20) | ![](https://singlecolorimage.com/get/F59E0B/40x20) | ![](https://singlecolorimage.com/get/D97706/40x20) | ![](https://singlecolorimage.com/get/B45309/40x20) | ![](https://singlecolorimage.com/get/92400E/40x20) | ![](https://singlecolorimage.com/get/78350F/40x20) | ![](https://singlecolorimage.com/get/451A03/40x20) |
+| YELLOW  | ![](https://singlecolorimage.com/get/FEFCE8/40x20) | ![](https://singlecolorimage.com/get/FEF9C3/40x20) | ![](https://singlecolorimage.com/get/FEF08A/40x20) | ![](https://singlecolorimage.com/get/FDE047/40x20) | ![](https://singlecolorimage.com/get/FACC15/40x20) | ![](https://singlecolorimage.com/get/EAB308/40x20) | ![](https://singlecolorimage.com/get/CA8A04/40x20) | ![](https://singlecolorimage.com/get/A16207/40x20) | ![](https://singlecolorimage.com/get/854D0E/40x20) | ![](https://singlecolorimage.com/get/713F12/40x20) | ![](https://singlecolorimage.com/get/422006/40x20) |
+| LIME    | ![](https://singlecolorimage.com/get/F7FEE7/40x20) | ![](https://singlecolorimage.com/get/ECFCCB/40x20) | ![](https://singlecolorimage.com/get/D9F99D/40x20) | ![](https://singlecolorimage.com/get/BEF264/40x20) | ![](https://singlecolorimage.com/get/A3E635/40x20) | ![](https://singlecolorimage.com/get/84CC16/40x20) | ![](https://singlecolorimage.com/get/65A30D/40x20) | ![](https://singlecolorimage.com/get/4D7C0F/40x20) | ![](https://singlecolorimage.com/get/3F6212/40x20) | ![](https://singlecolorimage.com/get/365314/40x20) | ![](https://singlecolorimage.com/get/1A2E05/40x20) |
+| GREEN   | ![](https://singlecolorimage.com/get/F0FDF4/40x20) | ![](https://singlecolorimage.com/get/DCFCE7/40x20) | ![](https://singlecolorimage.com/get/BBF7D0/40x20) | ![](https://singlecolorimage.com/get/86EFAC/40x20) | ![](https://singlecolorimage.com/get/4ADE80/40x20) | ![](https://singlecolorimage.com/get/22C55E/40x20) | ![](https://singlecolorimage.com/get/16A34A/40x20) | ![](https://singlecolorimage.com/get/15803D/40x20) | ![](https://singlecolorimage.com/get/166534/40x20) | ![](https://singlecolorimage.com/get/14532D/40x20) | ![](https://singlecolorimage.com/get/052E16/40x20) |
+| EMERALD | ![](https://singlecolorimage.com/get/ECFDF5/40x20) | ![](https://singlecolorimage.com/get/D1FAE5/40x20) | ![](https://singlecolorimage.com/get/A7F3D0/40x20) | ![](https://singlecolorimage.com/get/6EE7B7/40x20) | ![](https://singlecolorimage.com/get/34D399/40x20) | ![](https://singlecolorimage.com/get/10B981/40x20) | ![](https://singlecolorimage.com/get/059669/40x20) | ![](https://singlecolorimage.com/get/047857/40x20) | ![](https://singlecolorimage.com/get/065F46/40x20) | ![](https://singlecolorimage.com/get/064E3B/40x20) | ![](https://singlecolorimage.com/get/022C22/40x20) |
+| TEAL    | ![](https://singlecolorimage.com/get/F0FDFA/40x20) | ![](https://singlecolorimage.com/get/CCFBF1/40x20) | ![](https://singlecolorimage.com/get/99F6E4/40x20) | ![](https://singlecolorimage.com/get/5EEAD4/40x20) | ![](https://singlecolorimage.com/get/2DD4BF/40x20) | ![](https://singlecolorimage.com/get/14B8A6/40x20) | ![](https://singlecolorimage.com/get/0D9488/40x20) | ![](https://singlecolorimage.com/get/0F766E/40x20) | ![](https://singlecolorimage.com/get/115E59/40x20) | ![](https://singlecolorimage.com/get/134E4A/40x20) | ![](https://singlecolorimage.com/get/042F2E/40x20) |
+| CYAN    | ![](https://singlecolorimage.com/get/ECFEFF/40x20) | ![](https://singlecolorimage.com/get/CFFAFE/40x20) | ![](https://singlecolorimage.com/get/A5F3FC/40x20) | ![](https://singlecolorimage.com/get/67E8F9/40x20) | ![](https://singlecolorimage.com/get/22D3EE/40x20) | ![](https://singlecolorimage.com/get/06B6D4/40x20) | ![](https://singlecolorimage.com/get/0891B2/40x20) | ![](https://singlecolorimage.com/get/0E7490/40x20) | ![](https://singlecolorimage.com/get/155E75/40x20) | ![](https://singlecolorimage.com/get/164E63/40x20) | ![](https://singlecolorimage.com/get/083344/40x20) |
+| SKY     | ![](https://singlecolorimage.com/get/F0F9FF/40x20) | ![](https://singlecolorimage.com/get/E0F2FE/40x20) | ![](https://singlecolorimage.com/get/BAE6FD/40x20) | ![](https://singlecolorimage.com/get/7DD3FC/40x20) | ![](https://singlecolorimage.com/get/38BDF8/40x20) | ![](https://singlecolorimage.com/get/0EA5E9/40x20) | ![](https://singlecolorimage.com/get/0284C7/40x20) | ![](https://singlecolorimage.com/get/0369A1/40x20) | ![](https://singlecolorimage.com/get/075985/40x20) | ![](https://singlecolorimage.com/get/0C4A6E/40x20) | ![](https://singlecolorimage.com/get/082F49/40x20) |
+| BLUE    | ![](https://singlecolorimage.com/get/EFF6FF/40x20) | ![](https://singlecolorimage.com/get/DBEAFE/40x20) | ![](https://singlecolorimage.com/get/BFDBFE/40x20) | ![](https://singlecolorimage.com/get/93C5FD/40x20) | ![](https://singlecolorimage.com/get/60A5FA/40x20) | ![](https://singlecolorimage.com/get/3B82F6/40x20) | ![](https://singlecolorimage.com/get/2563EB/40x20) | ![](https://singlecolorimage.com/get/1D4ED8/40x20) | ![](https://singlecolorimage.com/get/1E40AF/40x20) | ![](https://singlecolorimage.com/get/1E3A8A/40x20) | ![](https://singlecolorimage.com/get/172554/40x20) |
+| INDIGO  | ![](https://singlecolorimage.com/get/EEF2FF/40x20) | ![](https://singlecolorimage.com/get/E0E7FF/40x20) | ![](https://singlecolorimage.com/get/C7D2FE/40x20) | ![](https://singlecolorimage.com/get/A5B4FC/40x20) | ![](https://singlecolorimage.com/get/818CF8/40x20) | ![](https://singlecolorimage.com/get/6366F1/40x20) | ![](https://singlecolorimage.com/get/4F46E5/40x20) | ![](https://singlecolorimage.com/get/4338CA/40x20) | ![](https://singlecolorimage.com/get/3730A3/40x20) | ![](https://singlecolorimage.com/get/312E81/40x20) | ![](https://singlecolorimage.com/get/1E1B4B/40x20) |
+| VIOLET  | ![](https://singlecolorimage.com/get/F5F3FF/40x20) | ![](https://singlecolorimage.com/get/EDE9FE/40x20) | ![](https://singlecolorimage.com/get/DDD6FE/40x20) | ![](https://singlecolorimage.com/get/C4B5FD/40x20) | ![](https://singlecolorimage.com/get/A78BFA/40x20) | ![](https://singlecolorimage.com/get/8B5CF6/40x20) | ![](https://singlecolorimage.com/get/7C3AED/40x20) | ![](https://singlecolorimage.com/get/6D28D9/40x20) | ![](https://singlecolorimage.com/get/5B21B6/40x20) | ![](https://singlecolorimage.com/get/4C1D95/40x20) | ![](https://singlecolorimage.com/get/2E1065/40x20) |
+| PURPLE  | ![](https://singlecolorimage.com/get/FAF5FF/40x20) | ![](https://singlecolorimage.com/get/F3E8FF/40x20) | ![](https://singlecolorimage.com/get/E9D5FF/40x20) | ![](https://singlecolorimage.com/get/D8B4FE/40x20) | ![](https://singlecolorimage.com/get/C084FC/40x20) | ![](https://singlecolorimage.com/get/A855F7/40x20) | ![](https://singlecolorimage.com/get/9333EA/40x20) | ![](https://singlecolorimage.com/get/7E22CE/40x20) | ![](https://singlecolorimage.com/get/6B21A8/40x20) | ![](https://singlecolorimage.com/get/581C87/40x20) | ![](https://singlecolorimage.com/get/3B0764/40x20) |
+| FUCHSIA | ![](https://singlecolorimage.com/get/FDF4FF/40x20) | ![](https://singlecolorimage.com/get/FAE8FF/40x20) | ![](https://singlecolorimage.com/get/F5D0FE/40x20) | ![](https://singlecolorimage.com/get/F0ABFC/40x20) | ![](https://singlecolorimage.com/get/E879F9/40x20) | ![](https://singlecolorimage.com/get/D946EF/40x20) | ![](https://singlecolorimage.com/get/C026D3/40x20) | ![](https://singlecolorimage.com/get/A21CAF/40x20) | ![](https://singlecolorimage.com/get/86198F/40x20) | ![](https://singlecolorimage.com/get/701A75/40x20) | ![](https://singlecolorimage.com/get/4A044E/40x20) |
+| PINK    | ![](https://singlecolorimage.com/get/FDF2F8/40x20) | ![](https://singlecolorimage.com/get/FCE7F3/40x20) | ![](https://singlecolorimage.com/get/FBCFE8/40x20) | ![](https://singlecolorimage.com/get/F9A8D4/40x20) | ![](https://singlecolorimage.com/get/F472B6/40x20) | ![](https://singlecolorimage.com/get/EC4899/40x20) | ![](https://singlecolorimage.com/get/DB2777/40x20) | ![](https://singlecolorimage.com/get/BE185D/40x20) | ![](https://singlecolorimage.com/get/9D174D/40x20) | ![](https://singlecolorimage.com/get/831843/40x20) | ![](https://singlecolorimage.com/get/500724/40x20) |
+| ROSE    | ![](https://singlecolorimage.com/get/FFF1F2/40x20) | ![](https://singlecolorimage.com/get/FFE4E6/40x20) | ![](https://singlecolorimage.com/get/FECDD3/40x20) | ![](https://singlecolorimage.com/get/FDA4AF/40x20) | ![](https://singlecolorimage.com/get/FB7185/40x20) | ![](https://singlecolorimage.com/get/F43F5E/40x20) | ![](https://singlecolorimage.com/get/E11D48/40x20) | ![](https://singlecolorimage.com/get/BE123C/40x20) | ![](https://singlecolorimage.com/get/9F1239/40x20) | ![](https://singlecolorimage.com/get/881337/40x20) | ![](https://singlecolorimage.com/get/4C0519/40x20) |
+| SLATE   | ![](https://singlecolorimage.com/get/F8FAFC/40x20) | ![](https://singlecolorimage.com/get/F1F5F9/40x20) | ![](https://singlecolorimage.com/get/E2E8F0/40x20) | ![](https://singlecolorimage.com/get/CBD5E1/40x20) | ![](https://singlecolorimage.com/get/94A3B8/40x20) | ![](https://singlecolorimage.com/get/64748B/40x20) | ![](https://singlecolorimage.com/get/475569/40x20) | ![](https://singlecolorimage.com/get/334155/40x20) | ![](https://singlecolorimage.com/get/1E293B/40x20) | ![](https://singlecolorimage.com/get/0F172A/40x20) | ![](https://singlecolorimage.com/get/020617/40x20) |
+| GRAY    | ![](https://singlecolorimage.com/get/F9FAFB/40x20) | ![](https://singlecolorimage.com/get/F3F4F6/40x20) | ![](https://singlecolorimage.com/get/E5E7EB/40x20) | ![](https://singlecolorimage.com/get/D1D5DB/40x20) | ![](https://singlecolorimage.com/get/9CA3AF/40x20) | ![](https://singlecolorimage.com/get/6B7280/40x20) | ![](https://singlecolorimage.com/get/4B5563/40x20) | ![](https://singlecolorimage.com/get/374151/40x20) | ![](https://singlecolorimage.com/get/1F2937/40x20) | ![](https://singlecolorimage.com/get/111827/40x20) | ![](https://singlecolorimage.com/get/030712/40x20) |
+| ZINC    | ![](https://singlecolorimage.com/get/FAFAFA/40x20) | ![](https://singlecolorimage.com/get/F4F4F5/40x20) | ![](https://singlecolorimage.com/get/E4E4E7/40x20) | ![](https://singlecolorimage.com/get/D4D4D8/40x20) | ![](https://singlecolorimage.com/get/A1A1AA/40x20) | ![](https://singlecolorimage.com/get/71717A/40x20) | ![](https://singlecolorimage.com/get/52525B/40x20) | ![](https://singlecolorimage.com/get/3F3F46/40x20) | ![](https://singlecolorimage.com/get/27272A/40x20) | ![](https://singlecolorimage.com/get/18181B/40x20) | ![](https://singlecolorimage.com/get/09090B/40x20) |
+| NEUTRAL | ![](https://singlecolorimage.com/get/FAFAFA/40x20) | ![](https://singlecolorimage.com/get/F5F5F5/40x20) | ![](https://singlecolorimage.com/get/E5E5E5/40x20) | ![](https://singlecolorimage.com/get/D4D4D4/40x20) | ![](https://singlecolorimage.com/get/A3A3A3/40x20) | ![](https://singlecolorimage.com/get/737373/40x20) | ![](https://singlecolorimage.com/get/525252/40x20) | ![](https://singlecolorimage.com/get/404040/40x20) | ![](https://singlecolorimage.com/get/262626/40x20) | ![](https://singlecolorimage.com/get/171717/40x20) | ![](https://singlecolorimage.com/get/0A0A0A/40x20) |
+| STONE   | ![](https://singlecolorimage.com/get/FAFAF9/40x20) | ![](https://singlecolorimage.com/get/F5F5F4/40x20) | ![](https://singlecolorimage.com/get/E7E5E4/40x20) | ![](https://singlecolorimage.com/get/D6D3D1/40x20) | ![](https://singlecolorimage.com/get/A8A29E/40x20) | ![](https://singlecolorimage.com/get/78716C/40x20) | ![](https://singlecolorimage.com/get/57534E/40x20) | ![](https://singlecolorimage.com/get/44403C/40x20) | ![](https://singlecolorimage.com/get/292524/40x20) | ![](https://singlecolorimage.com/get/1C1917/40x20) | ![](https://singlecolorimage.com/get/0C0A09/40x20) |
