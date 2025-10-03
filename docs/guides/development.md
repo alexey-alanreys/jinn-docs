@@ -9,6 +9,7 @@ This guide shows how to build custom trading strategies for **Jinn**, using `Exa
 - [Core Implementation](#core-implementation)
 - [Handling Timeframes](#handling-timeframes)
 - [Frontend Integration](#frontend-integration)
+- [Testing Strategies](#testing-strategies)
 - [Best Practices](#best-practices)
 - [References](#references)
 
@@ -50,12 +51,12 @@ Define default parameters for your strategy:
 ```python
 class ExampleV1(BaseStrategy):
     params = {
-        'order_size': 90.0,
+        'position_size': 90.0,
         'min_capital': 100.0,
         'stop_type': 1,
-        'stop': 2.0,
         'trail_stop': 1,
-        'trail_percent': 30.0,
+        'stop': 2.0,
+        'trail_percent': 2.0,
         'take_percent_1': 4.0,
         'take_percent_2': 6.0,
         'take_percent_3': 12.8,
@@ -111,8 +112,6 @@ import numba as nb
 
 from . import (
     BaseStrategy,
-    BaseExchangeClient,
-    Interval,
     adjust,
     colors,
     quanta,
@@ -175,16 +174,15 @@ def calculate(self) -> None:
         source=self.dst[1],
         length=1
     )
-    self.rsi = quanta.rsi(
-        source=self.close,
-        length=self.params['rsi_length']
+
+    self.dmi = quanta.dmi(
+        high=self.high,
+        low=self.low,
+        close=self.close,
+        di_length=self.params['di_length'],
+        adx_length=self.params['adx_length']
     )
-
-    # Additional market data
-    self.htf_close = np.full(self.time.shape[0], np.nan)
-
-    if len(self.feeds_data['klines']['HTF']['close'].shape) == 1:
-        self.htf_close = self.feeds_data['klines']['HTF']['close']
+    self.adx = self.dmi[2]
 
     # Alert flags for signals
     self.alert_cancel = False
@@ -710,6 +708,103 @@ self.indicators = {
 
 ---
 
+## <a id="testing-strategies"></a> 🧪 Testing Strategies
+
+### Automated Testing Framework
+
+**Jinn** includes an integrated testing framework that allows you to validate strategies without starting the full server application. This is particularly useful during development for quick iteration and validation.
+
+> **Note:** Automated testing of live trading is not supported due to the duration and complexity of the verification process. The testing framework covers backtesting and optimization only.
+
+### Running Tests
+
+Tests are executed inside the running Docker container using pytest.
+
+#### Backtesting Mode
+
+Test strategy execution on historical data:
+
+```bash
+docker exec jinn-core-jinn-1 pytest --mode=b --strategy=ExampleV1
+```
+
+#### Optimization Mode
+
+Test parameter optimization functionality:
+
+```bash
+docker exec jinn-core-jinn-1 pytest --mode=o --strategy=ExampleV1
+```
+
+#### Full Pipeline Mode
+
+Run both backtesting and optimization tests sequentially:
+
+```bash
+docker exec jinn-core-jinn-1 pytest --mode=f --strategy=ExampleV1
+```
+
+This comprehensive test ensures all strategy components work together correctly.
+
+### Test Execution Flow
+
+The testing framework automatically:
+
+1. Creates a test context with your strategy configuration.
+2. Loads historical market data.
+3. Executes the strategy logic.
+4. Validates that the context reaches `READY` status without failures.
+5. Reports test results.
+
+### Development Workflow
+
+**Recommended testing workflow during strategy development:**
+
+1. **Initial Development** — Write your strategy code following the architecture guidelines
+2. **Quick Validation** — Run backtesting test to verify basic functionality:
+   ```bash
+   docker exec jinn-core-jinn-1 pytest --mode=b --strategy=YourStrategy
+   ```
+3. **Parameter Testing** — Run optimization test to validate parameter ranges:
+   ```bash
+   docker exec jinn-core-jinn-1 pytest --mode=o --strategy=YourStrategy
+   ```
+4. **Full Validation** — Run the complete test suite before deployment:
+   ```bash
+   docker exec jinn-core-jinn-1 pytest --mode=f --strategy=YourStrategy
+   ```
+
+### Interpreting Results
+
+**Successful test output:**
+
+```
+test_strategy.py::TestStrategy::test_backtesting PASSED
+test_strategy.py::TestStrategy::test_optimization PASSED
+```
+
+**Failed test output:**
+
+```
+test_strategy.py::TestStrategy::test_backtesting FAILED
+AssertionError: assert <ContextStatus.FAILED: 'failed'> != <ContextStatus.FAILED: 'failed'>
+```
+
+If tests fail, check the Docker logs for detailed error messages:
+
+```bash
+docker logs jinn-core-jinn-1
+```
+
+### Benefits of Automated Testing
+
+- **Rapid Iteration** — Test changes without launching the full application.
+- **Early Error Detection** — Catch issues before deployment.
+- **Regression Prevention** — Ensure changes don't break existing functionality.
+- **Documentation** — Tests serve as executable examples of strategy behavior.
+
+---
+
 ## <a id="best-practices"></a> 📝 Best Practices
 
 ### Code Organization
@@ -724,7 +819,7 @@ self.indicators = {
 1. **Start Simple** — Begin with basic indicators and gradually add complexity after validation.
 2. **Validate Logic** — Test each component independently before integrating into the full strategy.
 3. **Test Thoroughly** — Use backtesting extensively before deploying in live trading environments.
-4. **Monitor Performance** — Regularly review strategy performance and adjust parameters as market conditions change.
+4. **Monitor Performance** — Regularly review strategy performance and adjust parameters as needed.
 
 ### Risk Management
 

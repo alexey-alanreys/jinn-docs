@@ -130,6 +130,15 @@ Supplies real-time market data directly from exchange clients for live trading e
 - **HTML/CSS** — Responsive UI with modern styling.
 - **Lightweight Charts** — Professional financial charting library.
 
+### Testing
+
+- **pytest** — Testing framework for unit and integration tests.
+
+### Deployment
+
+- **Docker** — Containerized deployment for consistent environments.
+- **Docker Compose** — Multi-container orchestration and configuration.
+
 ---
 
 ## <a id="web-interface"></a> 📊 Web Interface
@@ -164,6 +173,7 @@ Ready to start trading with **Jinn**? Follow these steps:
 
 - **[Installation Guide](guides/installation.md)** — Complete setup instructions.
 - **[Built-in Strategies Guide](guides/workflow.md)** — Workflow for built-in strategies.
+- **[Strategy Development Guide](guides/development.md)** — Guide for custom strategy development.
 
 ---
 

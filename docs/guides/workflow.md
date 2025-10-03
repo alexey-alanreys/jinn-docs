@@ -24,8 +24,8 @@ To start **Jinn**, ensure Docker Desktop is running and navigate to the project 
 If you're running **Jinn** for the first time, build and start the container:
 
 ```bash
-docker-compose build
-docker-compose up -d
+docker compose build
+docker compose up -d
 ```
 
 #### Regular Startup
@@ -33,7 +33,21 @@ docker-compose up -d
 For normal day-to-day use, simply start the existing container:
 
 ```bash
-docker-compose up -d
+docker compose up -d
+```
+
+#### Running the Application
+
+After the container is running, execute the following command to start the **Jinn** application:
+
+```bash
+docker exec jinn-core-jinn-1 python run.py
+```
+
+You should see output similar to:
+
+```
+2025-10-03 00:03:20 - INFO - __main__ - 👉 Open: http://127.0.0.1:1001
 ```
 
 Once the application has successfully launched, open a web browser and navigate to `http://localhost:1001/` (unless you have changed the `SERVER_PORT` or `BASE_URL` settings in the `.env` file).
@@ -42,8 +56,12 @@ Once the application has successfully launched, open a web browser and navigate 
 
 To stop the application:
 
+- Press `Ctrl+C` in the terminal where the application is running.
+
+To stop the Docker container:
+
 ```bash
-docker-compose down
+docker compose down
 ```
 
 ### Strategic Workflow
@@ -245,10 +263,10 @@ The _Live Trading Alerts_ tab will display notifications from strategies executi
 
 #### Docker Issues
 
-- Ensure Docker Desktop is running before starting the application.
-- Check container status with `docker-compose ps`.
-- View application logs with `docker-compose logs`.
-- Restart the container with `docker-compose restart`.
+- Start Docker Desktop before running the application.
+- Check container status with `docker compose ps`.
+- View application logs with `docker compose logs`.
+- Restart the container with `docker compose restart`.
 
 #### Connection Issues
 
@@ -265,7 +283,7 @@ The _Live Trading Alerts_ tab will display notifications from strategies executi
 
 ### Getting Help
 
-1. **Check Application Logs:** Review log files with `docker-compose logs` for detailed error messages and debugging information.
+1. **Check Logs:** Review log files with `docker compose logs` for detailed information.
 2. **Verify Configuration:** Double-check all settings against the documentation examples.
 3. **Documentation Review:** Ensure you're following the latest workflow procedures and best practices.
 

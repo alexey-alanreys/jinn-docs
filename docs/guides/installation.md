@@ -5,9 +5,9 @@ This guide provides step-by-step instructions for setting up **Jinn** using Dock
 ## Table of Contents
 
 - [System Requirements](#system-requirements)
-- [Download the Jinn Framework](#step-1-download-the-jinn-framework)
-- [Docker Setup & Running Jinn](#step-2-docker-setup-running-jinn)
-- [Setup Configuration](#step-3-setup-configuration)
+- [Download the Jinn Framework](#download-the-jinn-framework)
+- [Docker Setup & Running Jinn](#docker-setup-running-jinn)
+- [Setup Configuration](#setup-configuration)
 - [Troubleshooting](#troubleshooting)
 
 ---
@@ -16,7 +16,6 @@ This guide provides step-by-step instructions for setting up **Jinn** using Dock
 
 ### Minimum Requirements
 
-- **Operating System**: Windows 10+, macOS 10.14+, or Linux (Ubuntu 18.04+)
 - **Docker**: 24.0+ (with Docker Compose)
 - **RAM**: 2 GB minimum (4 GB recommended)
 - **Storage**: 2 GB free space
@@ -30,7 +29,7 @@ This guide provides step-by-step instructions for setting up **Jinn** using Dock
 
 ---
 
-## <a id="step-1-download-the-jinn-framework"></a> 📦 Step 1: Download the Jinn Framework
+## <a id="download-the-jinn-framework"></a> 📦 Download the Jinn Framework
 
 Clone the repository to get the latest version of the project:
 
@@ -50,9 +49,15 @@ git clone https://github.com/albert-alanreys/jinn-core.git
 cd jinn-core
 ```
 
+### Strategy Integration
+
+**Jinn** ships without trading strategies (except for examples: ExampleV1, ExampleV2, etc.). Strategies developed in-house or acquired from third parties must be integrated into **Jinn** before use.
+
+To integrate a custom strategy into **Jinn**, place the strategy module in the `jinn-core/src/core/strategies` folder.
+
 ---
 
-## <a id="step-2-docker-setup-running-jinn"></a> 🐳 Step 2: Docker Setup & Running Jinn
+## <a id="docker-setup-running-jinn"></a> 🐳 Docker Setup & Running Jinn
 
 ### Install Docker
 
@@ -66,26 +71,54 @@ cd jinn-core
 First, build the Docker image:
 
 ```bash
-docker-compose build
+docker compose build
 ```
 
-### Run Jinn with Docker
+### Start the Container
 
 Start the container in detached mode:
 
 ```bash
-docker-compose up -d
+docker compose up -d
 ```
 
 - `-d` runs the container in the background.
 
+### Run Jinn Application
+
+After the container is running, execute the following command to start the **Jinn** application:
+
+```bash
+docker exec jinn-core-jinn-1 python run.py
+```
+
+You should see output similar to:
+
+```
+2025-10-03 00:03:20 - INFO - __main__ - 👉 Open: http://127.0.0.1:1001
+```
+
 Access the server at `http://localhost:1001/`.
 
-> **Note:** Even though the server binds to `0.0.0.0:1001` internally, Docker maps this to `localhost` on your machine.
+### Stop the Application
+
+The application runs in the foreground and blocks input. To stop it:
+
+- Press `Ctrl+C` in the terminal where the application is running.
+
+### Stop the Container
+
+To stop the Docker container:
+
+```bash
+docker compose down
+```
+
+This will stop and remove the container. Your data and configuration will be preserved.
 
 ---
 
-## <a id="step-3-setup-configuration"></a> ⚙️ Step 3: Setup Configuration
+## <a id="setup-configuration"></a> ⚙️ Setup Configuration
 
 ### Create the Environment File
 
@@ -212,7 +245,7 @@ TEST_WINDOW=0.3
 
 #### Parameter Explanations
 
-- **MAX_PROCESSES**: Number of parallel optimization processes. Leave empty for auto-detection based on CPU cores.
+- **MAX_PROCESSES**: Number of parallel optimization processes; leave empty to auto-detect CPU cores.
 - **OPTIMIZATION_ITERATIONS**: Number of iterations per optimization run (default: 2000).
 - **OPTIMIZATION_RUNS**: Number of independent optimization runs to perform (default: 3).
 - **POPULATION_SIZE**: Initial population size for genetic algorithm (default: 200).
@@ -232,8 +265,8 @@ TEST_WINDOW=0.3
 
 ### Docker Issues
 
-- Try rebuilding the image with `docker-compose build --no-cache` if encountering build issues.
-- Check Docker logs with `docker-compose logs` for detailed error information.
+- Try rebuilding the image with `docker compose build --no-cache` if build issues occur.
+- Check Docker logs with `docker compose logs` for detailed error information.
 - Ensure Docker Desktop is running before executing commands.
 
 ### API Connectivity Problems
