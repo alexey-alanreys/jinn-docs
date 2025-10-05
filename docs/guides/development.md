@@ -390,7 +390,7 @@ def _calculate_loop(
     )
 ```
 
-See [Constants Reference](../references/constants.md#signal-codes) for predefined entry and close signal codes.
+See [Constants Reference](/docs/references/constants.md#signal-codes) for predefined entry and close signal codes.
 
 ### Working with Deal Logs
 
@@ -461,7 +461,7 @@ if current_size > 0:
     position_count = log.count(open_deals_log)
 ```
 
-See [Log Module Reference](../references/log.md) for complete function documentation and usage examples.
+See [Log Module Reference](/docs/references/log.md) for complete function documentation and usage examples.
 
 ### Trade Method Implementation
 
@@ -538,7 +538,7 @@ def trade(self) -> None:
             self.order_ids['limit_ids'].append(order_id)
 ```
 
-See [Exchange Clients](../references/exchange_clients.md) for a detailed overview of available methods and usage examples for `self.client`.
+See [Exchange Clients](/docs/references/exchange_clients.md) for a detailed overview of available methods and usage examples for `self.client`.
 
 ---
 
@@ -680,7 +680,7 @@ self.indicators = {
 }
 ```
 
-See [Constants Reference](../references/constants.md) for predefined values used in indicator visualization and styling.
+See [Constants Reference](/docs/references/constants.md) for predefined values used in indicator visualization and styling.
 
 ### Dynamic Colors
 
@@ -832,10 +832,10 @@ docker logs jinn-core-jinn-1
 
 ## <a id="references"></a> 📚 References
 
-- [Exchange Clients](docs/references/exchange_clients.md)
-- [Quanta Library](docs/references/quanta_lib.md)
-- [Log Module](docs/references/log.md)
-- [Constants](docs/references/constants.md)
+- [Exchange Clients](/docs/references/exchange_clients.md)
+- [Quanta Library](/docs/references/quanta_lib.md)
+- [Log Module](/docs/references/log.md)
+- [Constants](/docs/references/constants.md)
 
 ---
 

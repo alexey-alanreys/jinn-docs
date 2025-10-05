@@ -1,12 +1,14 @@
 # Installation Guide
 
-This guide provides step-by-step instructions for setting up **Jinn** using Docker.
+This guide provides step-by-step instructions for setting up **Jinn** using Docker or native Python environment.
 
 ## Table of Contents
 
 - [System Requirements](#system-requirements)
 - [Download the Jinn Framework](#download-the-jinn-framework)
-- [Docker Setup & Running Jinn](#docker-setup-running-jinn)
+- [Installation Methods](#installation-methods)
+  - [Docker Installation (Recommended)](#docker-installation-recommended)
+  - [Native Python Installation](#native-python-installation)
 - [Setup Configuration](#setup-configuration)
 - [Troubleshooting](#troubleshooting)
 
@@ -14,18 +16,25 @@ This guide provides step-by-step instructions for setting up **Jinn** using Dock
 
 ## <a id="system-requirements"></a> 📋 System Requirements
 
-### Minimum Requirements
+### Docker Installation Requirements
 
 - **Docker**: 24.0+ (with Docker Compose)
 - **RAM**: 2 GB minimum (4 GB recommended)
 - **Storage**: 2 GB free space
 - **Internet**: Stable connection
 
+### Native Python Installation Requirements
+
+- **Python**: 3.13+
+- **RAM**: 2 GB minimum (4 GB recommended)
+- **Storage**: 2 GB free space
+- **Internet**: Stable connection
+
 ### Prerequisites
 
-- API credentials from Binance and/or Bybit.
-- Telegram bot token (for notifications).
-- Basic familiarity with the command line.
+- API credentials from Binance and/or Bybit
+- Telegram bot token (for notifications)
+- Basic familiarity with the command line
 
 ---
 
@@ -57,18 +66,26 @@ To integrate a custom strategy into **Jinn**, place the strategy module in the `
 
 ---
 
-## <a id="docker-setup-running-jinn"></a> 🐳 Docker Setup & Running Jinn
+## <a id="installation-methods"></a> 🚀 Installation Methods
+
+Choose one of the following installation methods based on your preferences and environment.
+
+---
+
+## <a id="docker-installation-recommended"></a> 🐳 Docker Installation (Recommended)
+
+Docker provides an isolated, consistent environment and simplifies dependency management.
 
 ### Install Docker
 
-1. Go to the official Docker website: https://www.docker.com/get-started
+1. Go to the official Docker website: https://www.docker.com/get-started.
 2. Download Docker Desktop for your operating system.
-3. Follow the installation instructions.
+3. Run the installer and follow the setup instructions.
 4. On Linux, install Docker Engine and Docker Compose using your package manager.
 
 ### Build the Docker Image
 
-First, build the Docker image:
+Navigate to the project directory and build the image:
 
 ```bash
 docker compose build
@@ -82,11 +99,11 @@ Start the container in detached mode:
 docker compose up -d
 ```
 
-- `-d` runs the container in the background.
+The `-d` flag runs the container in the background.
 
 ### Run Jinn Application
 
-After the container is running, execute the following command to start the **Jinn** application:
+After the container is running, execute the following command to start **Jinn**:
 
 ```bash
 docker exec jinn-core-jinn-1 python run.py
@@ -98,7 +115,7 @@ You should see output similar to:
 2025-10-03 00:03:20 - INFO - __main__ - 👉 Open: http://127.0.0.1:1001
 ```
 
-Access the server at `http://localhost:1001/`.
+Access the application at `http://localhost:1001/`.
 
 ### Stop the Application
 
@@ -115,6 +132,76 @@ docker compose down
 ```
 
 This will stop and remove the container. Your data and configuration will be preserved.
+
+---
+
+## <a id="native-python-installation"></a> 🐍 Native Python Installation
+
+This method runs **Jinn** directly on your system without Docker containerization.
+
+### Prerequisites
+
+Ensure Python 3.13 or higher is installed on your system:
+
+```bash
+python --version
+```
+
+### Create Virtual Environment
+
+Navigate to the project directory and create a virtual environment:
+
+#### Windows
+
+```cmd
+python -m venv venv
+venv\Scripts\activate
+```
+
+#### macOS/Linux
+
+```bash
+python -m venv venv
+source venv/bin/activate
+```
+
+### Install Dependencies
+
+Install required packages from `requirements.txt`:
+
+```bash
+pip install -r requirements.txt
+```
+
+### Run Jinn Application
+
+Start the application:
+
+```bash
+python run.py
+```
+
+You should see output similar to:
+
+```
+2025-10-03 00:03:20 - INFO - __main__ - 👉 Open: http://127.0.0.1:1001
+```
+
+Access the application at `http://localhost:1001/`.
+
+### Stop the Application
+
+To stop the application:
+
+- Press `Ctrl+C` in the terminal where the application is running.
+
+### Deactivate Virtual Environment
+
+When you're done working with **Jinn**, deactivate the virtual environment:
+
+```bash
+deactivate
+```
 
 ---
 
@@ -268,6 +355,12 @@ TEST_WINDOW=0.3
 - Try rebuilding the image with `docker compose build --no-cache` if build issues occur.
 - Check Docker logs with `docker compose logs` for detailed error information.
 - Ensure Docker Desktop is running before executing commands.
+
+### Python Environment Issues
+
+- Verify Python version is 3.13 or higher: `python --version`.
+- Ensure virtual environment is activated before installing dependencies.
+- On Windows, if you encounter permission errors, run the terminal as administrator.
 
 ### API Connectivity Problems
 
