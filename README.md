@@ -42,17 +42,14 @@
 
 ---
 
-## 💼 Private Repository Access
+## 🔗 Related Repositories
 
-**Jinn** is a commercial project. Access to the private repository is granted upon purchase and request.
-
----
-
-## 📬 Support & Contact
-
-For access to the private repository, questions, or feature requests, please contact the author directly.  
-Contact information is available on the [main GitHub profile](https://github.com/albert-alanreys).
+- **[jinn-core](https://github.com/albert-alanreys/jinn-core)** — Core backend implementation
+- **[jinn-frontend](https://github.com/albert-alanreys/jinn-frontend)** — Web interface
 
 ---
+
+**License:** MIT  
+**Author:** [Albert Alan-Reys](https://github.com/albert-alanreys)
 
 **© 2025 Jinn Trading Framework**
