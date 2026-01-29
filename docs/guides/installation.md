@@ -46,7 +46,7 @@ Clone the repository to get the latest version of the project:
 
 ```cmd
 cd C:\Trading
-git clone https://github.com/albert-alanreys/jinn-core.git
+git clone https://github.com/alexey-alanreys/jinn-core.git
 cd jinn-core
 ```
 
@@ -54,7 +54,7 @@ cd jinn-core
 
 ```bash
 cd ~/Trading
-git clone https://github.com/albert-alanreys/jinn-core.git
+git clone https://github.com/alexey-alanreys/jinn-core.git
 cd jinn-core
 ```
 
@@ -382,5 +382,5 @@ TEST_WINDOW=0.3
 
 ---
 
-**🎉 Installation Complete!**  
+**🎉 Installation Complete!**
 You are now ready to use **Jinn** for algorithmic trading.

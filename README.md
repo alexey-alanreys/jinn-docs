@@ -44,12 +44,12 @@
 
 ## 🔗 Related Repositories
 
-- **[jinn-core](https://github.com/albert-alanreys/jinn-core)** — Core backend implementation
-- **[jinn-frontend](https://github.com/albert-alanreys/jinn-frontend)** — Web interface
+- **[jinn-core](https://github.com/alexey-alanreys/jinn-core)** — Core backend implementation
+- **[jinn-frontend](https://github.com/alexey-alanreys/jinn-frontend)** — Web interface
 
 ---
 
-**License:** MIT  
-**Author:** [Albert Alan-Reys](https://github.com/albert-alanreys)
+**License:** MIT
+**Author:** [Alexey Alan-Reys](https://github.com/alexey-alanreys)
 
 **© 2025 Jinn Trading Framework**
